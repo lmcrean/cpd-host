@@ -12,7 +12,6 @@
       --muted: #6f6860;
       --line: #ddd5ca;
       --clay: #b96b4a;
-      --sage: #65715f;
       --slate: #25292c;
       --white: #fffaf2;
       --focus: #2f6fed;
@@ -24,10 +23,6 @@
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -52,7 +47,7 @@
     }
 
     .shell {
-      width: min(1160px, calc(100% - 32px));
+      width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
     }
 
@@ -60,7 +55,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(248, 244, 236, 0.92);
+      background: rgba(248, 244, 236, 0.94);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line);
     }
@@ -77,7 +72,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 180px;
+      min-width: 188px;
+      color: var(--ink);
+      text-decoration: none;
       font-weight: 760;
     }
 
@@ -102,35 +99,44 @@
       scrollbar-width: thin;
     }
 
-    .menu button,
-    .ghost-button,
-    .primary-button {
+    .menu a,
+    .button {
       min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 14px;
-      background: transparent;
+      background: rgba(255, 250, 242, 0.42);
       color: var(--ink);
+      text-decoration: none;
       cursor: pointer;
       white-space: nowrap;
+      font-weight: 680;
     }
 
-    .menu button[aria-pressed="true"] {
+    .menu a[aria-current="page"],
+    .button-primary {
       background: var(--ink);
       border-color: var(--ink);
       color: var(--paper);
+      font-weight: 760;
     }
 
-    .hero {
+    .page {
       min-height: calc(100vh - 68px);
-      display: grid;
-      align-items: center;
-      padding: 56px 0 40px;
+      padding: 56px 0 44px;
     }
 
-    .hero-grid {
+    .page[hidden] {
+      display: none;
+    }
+
+    .home-grid {
+      min-height: calc(100vh - 168px);
       display: grid;
-      grid-template-columns: minmax(0, 0.96fr) minmax(320px, 1.04fr);
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
       gap: 64px;
       align-items: center;
     }
@@ -166,34 +172,15 @@
       line-height: 1.35;
     }
 
-    .hero-actions {
+    .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 34px;
+      margin-top: 32px;
     }
 
-    .primary-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-      font-weight: 720;
-    }
-
-    .ghost-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      background: rgba(255, 250, 242, 0.52);
-      font-weight: 680;
-    }
-
-    .workflow-panel {
+    .workflow-panel,
+    .page-panel {
       border: 1px solid var(--ink);
       background: var(--white);
     }
@@ -228,7 +215,7 @@
       background: var(--white);
       color: var(--ink);
       text-align: left;
-      cursor: pointer;
+      text-decoration: none;
     }
 
     .workflow-card:first-child {
@@ -240,21 +227,11 @@
       border-radius: 0 0 var(--radius) var(--radius);
     }
 
-    .workflow-card[aria-pressed="true"] {
+    .workflow-card:hover,
+    .workflow-card:focus-visible {
       background: #efe6da;
       border-color: var(--ink);
       box-shadow: inset 4px 0 0 var(--clay);
-    }
-
-    .workflow-card[aria-pressed="false"] {
-      opacity: 0.34;
-      filter: grayscale(0.65);
-    }
-
-    .workflow-card[aria-pressed="false"]:hover,
-    .workflow-card[aria-pressed="false"]:focus-visible {
-      opacity: 0.72;
-      filter: grayscale(0.2);
     }
 
     .workflow-letter {
@@ -285,112 +262,60 @@
       font-size: 24px;
     }
 
-    .section {
-      padding: 84px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-dark {
-      background: var(--slate);
-      color: var(--paper);
-      border-top: 0;
-    }
-
-    .section-dark .eyebrow,
-    .section-dark .muted,
-    .section-dark .step-note {
-      color: #d5c7bb;
-    }
-
-    .section-header {
+    .workflow-page {
       display: grid;
-      grid-template-columns: minmax(0, 0.74fr) minmax(280px, 0.42fr);
+      gap: 28px;
+    }
+
+    .workflow-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.46fr);
       gap: 42px;
       align-items: end;
-      margin-bottom: 36px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .section h2 {
+    .workflow-hero h1 {
       margin-bottom: 0;
-      font-size: clamp(34px, 4.7vw, 64px);
-      line-height: 0.98;
-      letter-spacing: 0;
+      font-size: clamp(42px, 6vw, 78px);
     }
 
+    .summary-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 242, 0.74);
+    }
+
+    .summary-card h2 {
+      margin-bottom: 10px;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .summary-card p,
     .muted {
       color: var(--muted);
       line-height: 1.55;
     }
 
-    .steps {
+    .content-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      background: rgba(255, 250, 242, 0.56);
-    }
-
-    .step {
-      min-height: 270px;
-      padding: 24px;
-      border-right: 1px solid var(--line);
-    }
-
-    .step:last-child {
-      border-right: 0;
-    }
-
-    .step-number {
-      display: inline-grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      margin-bottom: 38px;
-      border: 1px solid currentColor;
-      border-radius: 50%;
-      font-weight: 780;
-    }
-
-    .step h3 {
-      margin-bottom: 12px;
-      font-size: 23px;
-      line-height: 1.12;
-    }
-
-    .step-note {
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    .checklist-grid {
-      display: grid;
-      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
-      gap: 34px;
+      grid-template-columns: minmax(300px, 0.88fr) minmax(0, 1.12fr);
+      gap: 28px;
       align-items: start;
     }
 
-    .summary-box {
-      padding: 28px;
-      border: 1px solid rgba(248, 244, 236, 0.32);
+    .page-panel {
+      padding: 24px;
       border-radius: var(--radius);
-      background: rgba(255, 250, 242, 0.05);
     }
 
-    .summary-box h3 {
-      margin-bottom: 10px;
-      font-size: 28px;
+    .page-panel h2 {
+      margin-bottom: 18px;
+      font-size: 30px;
       line-height: 1.08;
-    }
-
-    .summary-box p {
-      margin-bottom: 22px;
-      line-height: 1.55;
-    }
-
-    .download-link {
-      width: 100%;
-      border-color: var(--paper);
-      background: var(--paper);
-      color: var(--ink);
     }
 
     .checklist {
@@ -406,10 +331,10 @@
       grid-template-columns: 26px 1fr;
       gap: 12px;
       align-items: start;
-      padding: 17px 18px;
-      border: 1px solid rgba(248, 244, 236, 0.24);
+      padding: 16px;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(255, 250, 242, 0.05);
+      background: var(--white);
       line-height: 1.42;
     }
 
@@ -420,60 +345,11 @@
       accent-color: var(--clay);
     }
 
-    .prompt-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1.18fr);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .prompt-layout-single {
-      grid-template-columns: minmax(0, 1fr);
-      max-width: 820px;
-    }
-
-    .prompt-menu {
-      display: grid;
-      gap: 10px;
-    }
-
-    .prompt-menu[hidden] {
-      display: none;
-    }
-
-    .prompt-option {
-      width: 100%;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 250, 242, 0.62);
-      color: var(--ink);
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .prompt-option[aria-pressed="true"] {
-      border-color: var(--ink);
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .prompt-option strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 17px;
-    }
-
-    .prompt-option span {
-      color: inherit;
-      opacity: 0.72;
-      font-size: 14px;
-      line-height: 1.35;
-    }
-
     .prompt-box {
       border: 1px solid var(--ink);
+      border-radius: var(--radius);
       background: var(--white);
+      overflow: hidden;
     }
 
     .prompt-toolbar {
@@ -508,7 +384,7 @@
 
     textarea {
       width: 100%;
-      min-height: 330px;
+      min-height: 350px;
       padding: 22px;
       border: 0;
       resize: vertical;
@@ -517,8 +393,16 @@
       font: 16px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     }
 
+    .pager {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 6px;
+    }
+
     .footer {
-      padding: 38px 0;
+      padding: 30px 0;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 14px;
@@ -526,10 +410,9 @@
 
     @media (max-width: 900px) {
       .topbar-inner,
-      .section-header,
-      .hero-grid,
-      .checklist-grid,
-      .prompt-layout {
+      .home-grid,
+      .workflow-hero,
+      .content-grid {
         grid-template-columns: 1fr;
       }
 
@@ -538,22 +421,8 @@
         padding: 14px 0;
       }
 
-      .hero {
-        min-height: auto;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .step {
+      .home-grid {
         min-height: 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .step:last-child {
-        border-bottom: 0;
       }
 
       .workflow-card {
@@ -567,29 +436,30 @@
 
     @media (max-width: 560px) {
       .shell {
-        width: min(100% - 22px, 1160px);
+        width: min(100% - 22px, 1120px);
       }
 
-      h1 {
-        font-size: 44px;
+      h1,
+      .workflow-hero h1 {
+        font-size: 42px;
       }
 
-      .section {
-        padding: 62px 0;
+      .page {
+        padding: 38px 0 34px;
       }
 
       .workflow-card,
-      .step,
-      .summary-box {
+      .page-panel,
+      .summary-card {
         padding: 18px;
       }
 
-      .hero-actions {
+      .actions,
+      .pager {
         display: grid;
       }
 
-      .primary-button,
-      .ghost-button {
+      .button {
         width: 100%;
       }
     }
@@ -598,149 +468,70 @@
 <body>
   <header class="topbar">
     <div class="shell topbar-inner">
-      <div class="brand" aria-label="Exam Paper Variation CPD">
+      <a class="brand" href="#home" data-nav="home" aria-label="Exam Paper Variation CPD home">
         <span class="brand-mark">CPD</span>
         <span>Exam variation workflow</span>
-      </div>
-      <nav class="menu" aria-label="Workflow menu">
-        <button type="button" data-workflow-nav="free" aria-pressed="true">A. Free Claude</button>
-        <button type="button" data-workflow-nav="pro" aria-pressed="false">B. Claude $20</button>
-        <button type="button" data-workflow-nav="repo" aria-pressed="false">C. Repository</button>
+      </a>
+      <nav class="menu" aria-label="Page navigation">
+        <a href="#home" data-nav="home" aria-current="page">Home</a>
+        <a href="#free" data-nav="free">A. Free Claude</a>
+        <a href="#pro" data-nav="pro">B. Claude $20</a>
+        <a href="#repo" data-nav="repo">C. Repository</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="choose" class="hero">
-      <div class="shell hero-grid">
+    <section class="page" data-page="home">
+      <div class="shell home-grid">
         <div>
-          <p class="eyebrow">Screen 1 - choose your workflow</p>
+          <p class="eyebrow">Choose your workflow</p>
           <h1>Variate exam papers with an exam skill.</h1>
-          <p class="lede">A clean CPD path for teachers to install one Claude skill, choose the right workflow, and try a first paper variation without getting lost in tooling.</p>
-          <div class="hero-actions">
-            <a class="primary-button" href="#instructions">Continue to checklist</a>
-            <a class="ghost-button" href="exam-variation.skill" download>Download skill</a>
+          <p class="lede">Pick one route. The next page only shows that workflow, so the CPD stays focused and easy to follow.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#free">Start with A</a>
+            <a class="button" href="exam-variation.skill" download>Download skill</a>
           </div>
         </div>
 
         <div class="workflow-panel" aria-label="Workflow picker">
           <div class="panel-head">
             <span>Menu</span>
-            <span id="selectedWorkflowName">Free Claude workflow</span>
+            <span>Pick one</span>
           </div>
           <div class="workflow-list">
-            <button class="workflow-card" type="button" data-workflow="free" aria-pressed="true">
+            <a class="workflow-card" href="#free">
               <span class="workflow-letter">A</span>
               <span>
                 <h2>Free Claude workflow</h2>
-                <p>Use Claude chat to variate the first two questions and learn the pattern safely.</p>
+                <p>Compress the paper, install the skill, then variate the first two questions.</p>
               </span>
               <span class="arrow" aria-hidden="true">></span>
-            </button>
-            <button class="workflow-card" type="button" data-workflow="pro" aria-pressed="false">
+            </a>
+            <a class="workflow-card" href="#pro">
               <span class="workflow-letter">B</span>
               <span>
                 <h2>Claude $20 subscription workflow</h2>
-                <p>Use a larger context window to variate the full paper in one guided pass.</p>
+                <p>Install the skill and use the larger workflow to variate the full paper.</p>
               </span>
               <span class="arrow" aria-hidden="true">></span>
-            </button>
-            <button class="workflow-card" type="button" data-workflow="repo" aria-pressed="false">
+            </a>
+            <a class="workflow-card" href="#repo">
               <span class="workflow-letter">C</span>
               <span>
                 <h2>Repository workflow</h2>
-                <p>Use Codex or Claude Code to vary, validate, and inspect a page-matched HTML output.</p>
+                <p>Use Codex or Claude Code to vary, validate, and inspect a page-matched output.</p>
               </span>
               <span class="arrow" aria-hidden="true">></span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="instructions" class="section section-dark">
-      <div class="shell">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Screen 2 - instructions and checklist</p>
-            <h2>Install the skill, add the paper, run one controlled variation.</h2>
-          </div>
-          <p class="muted" id="workflowSummary">Start with two questions. This keeps the first run small enough to inspect manually while teachers learn what the skill changes and what it must preserve.</p>
-        </div>
-
-        <div class="checklist-grid">
-          <aside class="summary-box">
-            <h3 id="workflowTitle">Free Claude workflow</h3>
-            <p id="workflowDescription">Best for first contact, no paid account, or a short live CPD demonstration.</p>
-            <a class="primary-button download-link" href="exam-variation.skill" download>Download exam-variation.skill</a>
-          </aside>
-
-          <ol class="checklist" id="setupChecklist" aria-label="Setup checklist"></ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="prompt" class="section">
-      <div class="shell">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Screen 3 - prompt guide</p>
-            <h2>Copy the version that matches the workflow.</h2>
-          </div>
-          <p class="muted">Each prompt assumes the exam skill has already been added to Claude or the repository assistant. The repository workflow also asks for validation HTML and keyword highlighting.</p>
-        </div>
-
-        <div class="prompt-layout prompt-layout-single">
-          <div class="prompt-menu" aria-label="Prompt options" hidden>
-            <button class="prompt-option" type="button" data-prompt="free" aria-pressed="true">
-              <strong>A. Free Claude</strong>
-              <span>First two questions only.</span>
-            </button>
-            <button class="prompt-option" type="button" data-prompt="pro" aria-pressed="false">
-              <strong>B. Claude $20</strong>
-              <span>Entire paper variation.</span>
-            </button>
-            <button class="prompt-option" type="button" data-prompt="repo" aria-pressed="false">
-              <strong>C. Repository</strong>
-              <span>Entire paper plus validation HTML.</span>
-            </button>
-          </div>
-
-          <div class="prompt-box">
-            <div class="prompt-toolbar">
-              <div>
-                <div class="prompt-label">Guide prompt</div>
-                <strong id="promptTitle">Free Claude workflow</strong>
-              </div>
-              <button class="copy-button" type="button" id="copyPrompt">Copy prompt</button>
-            </div>
-            <textarea id="promptText" spellcheck="false"></textarea>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="steps" aria-label="CPD flow">
-          <div class="step">
-            <span class="step-number">1</span>
-            <h3>Choose the right scale.</h3>
-            <p class="step-note">Free Claude for a small trial, paid Claude for a full paper, repository tools when validation and repeatability matter.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">2</span>
-            <h3>Keep the paper structure fixed.</h3>
-            <p class="step-note">The task is variation, not redesign. Marks, command words, page order, and question intent stay stable.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">3</span>
-            <h3>Inspect the difference.</h3>
-            <p class="step-note">Compare original and varied versions, then highlight changed keywords so the class-ready output is easy to trust.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="page" data-page="free" hidden></section>
+    <section class="page" data-page="pro" hidden></section>
+    <section class="page" data-page="repo" hidden></section>
   </main>
 
   <footer class="footer">
@@ -750,9 +541,11 @@
   <script>
     const workflows = {
       free: {
+        letter: "A",
         name: "Free Claude workflow",
+        shortName: "Free Claude",
         description: "Best for first contact, no paid account, or a short live CPD demonstration.",
-        summary: "Start with two questions. This keeps the first run small enough to inspect manually while teachers learn what the skill changes and what it must preserve.",
+        summary: "Start small: compress the exam paper to save tokens, install the skill, then variate only the first two questions.",
         checklist: [
           "Choose exam paper.",
           "Compress exam paper to save tokens at <a href=\"https://www.ilovepdf.com/compress_pdf\" target=\"_blank\" rel=\"noopener noreferrer\">iLovePDF Compress PDF</a>.",
@@ -769,12 +562,16 @@ Only change the contextual keywords, data values, names, examples, or surface de
 After the variation, provide:
 1. The varied version of questions 1 and 2.
 2. A short change log listing what was altered.
-3. Any checks I should do before using this with students.`
+3. Any checks I should do before using this with students.`,
+        previous: "home",
+        next: "pro"
       },
       pro: {
+        letter: "B",
         name: "Claude $20 subscription workflow",
-        description: "Best when the whole paper and mark scheme can sit in one conversation with enough room for review.",
-        summary: "Use the larger workflow to process the whole paper, then ask for a structured change log so every variation is auditable.",
+        shortName: "Claude $20",
+        description: "Best when the whole paper can sit in one conversation with enough room for review.",
+        summary: "Use the paid Claude workflow to install the skill, upload the full paper, and variate the whole paper in one guided pass.",
         checklist: [
           "Choose exam paper.",
           "Sign up to Claude and use the $20 subscription workflow.",
@@ -792,11 +589,15 @@ Work through the paper question by question. After the variation, provide:
 1. The full varied paper.
 2. A question-by-question change log.
 3. Any places where the mark scheme should be checked or lightly adjusted.
-4. A final checklist confirming that marks, command words, and question intent have been preserved.`
+4. A final checklist confirming that marks, command words, and question intent have been preserved.`,
+        previous: "free",
+        next: "repo"
       },
       repo: {
+        letter: "C",
         name: "Repository workflow",
-        description: "Best when you want repeatable outputs, visible validation, and tighter control over page-level layout.",
+        shortName: "Repository",
+        description: "Best when you want repeatable outputs, visible validation, and tighter page-level control.",
         summary: "Use Codex or Claude Code to make the variation in files, then generate validation HTML that compares original and varied pages.",
         checklist: [
           "Add the original exam paper, mark scheme, and source files to the repository.",
@@ -818,69 +619,120 @@ In the repository, produce:
 2. A validation HTML file comparing original and varied pages.
 3. A keyword highlight toggle for changed terms.
 4. A question-by-question change log.
-5. A short QA summary covering layout match, marks, command words, and question intent.`
+5. A short QA summary covering layout match, marks, command words, and question intent.`,
+        previous: "pro",
+        next: "home"
       }
     };
 
-    const workflowButtons = [...document.querySelectorAll("[data-workflow], [data-workflow-nav]")];
-    const promptButtons = [...document.querySelectorAll("[data-prompt]")];
-    const workflowCards = [...document.querySelectorAll("[data-workflow]")];
-    const selectedWorkflowName = document.querySelector("#selectedWorkflowName");
-    const workflowTitle = document.querySelector("#workflowTitle");
-    const workflowDescription = document.querySelector("#workflowDescription");
-    const workflowSummary = document.querySelector("#workflowSummary");
-    const setupChecklist = document.querySelector("#setupChecklist");
-    const promptTitle = document.querySelector("#promptTitle");
-    const promptText = document.querySelector("#promptText");
-    const copyPrompt = document.querySelector("#copyPrompt");
+    const pages = [...document.querySelectorAll("[data-page]")];
+    const navLinks = [...document.querySelectorAll("[data-nav]")];
 
-    function setWorkflow(key, shouldScroll) {
+    function workflowMarkup(key) {
       const data = workflows[key];
-      workflowButtons.forEach((button) => {
-        const buttonKey = button.dataset.workflow || button.dataset.workflowNav;
-        button.setAttribute("aria-pressed", String(buttonKey === key));
-      });
-      workflowCards.forEach((button) => {
-        const isSelected = button.dataset.workflow === key;
-        button.setAttribute("aria-current", isSelected ? "step" : "false");
-      });
-      promptButtons.forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.prompt === key));
-      });
-      selectedWorkflowName.textContent = data.name;
-      workflowTitle.textContent = data.name;
-      workflowDescription.textContent = data.description;
-      workflowSummary.textContent = data.summary;
-      setupChecklist.innerHTML = data.checklist.map((item, index) => {
-        const id = `check-${key}-${index + 1}`;
-        return `<li><input id="${id}" type="checkbox"><label for="${id}">${item}</label></li>`;
-      }).join("");
-      promptTitle.textContent = data.name;
-      promptText.value = data.prompt;
-      if (shouldScroll) {
-        document.querySelector("#instructions").scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      const previousLabel = data.previous === "home" ? "Back to choose" : `Back to ${workflows[data.previous].letter}`;
+      const nextLabel = data.next === "home" ? "Choose another workflow" : `Next: ${workflows[data.next].letter}`;
+
+      return `
+        <div class="shell workflow-page">
+          <div class="workflow-hero">
+            <div>
+              <p class="eyebrow">Workflow ${data.letter}</p>
+              <h1>${data.name}</h1>
+            </div>
+            <aside class="summary-card">
+              <h2>${data.shortName}</h2>
+              <p>${data.description}</p>
+              <a class="button button-primary" href="exam-variation.skill" download>Download skill</a>
+            </aside>
+          </div>
+
+          <p class="lede">${data.summary}</p>
+
+          <div class="content-grid">
+            <section class="page-panel" aria-labelledby="${key}-checklist-title">
+              <h2 id="${key}-checklist-title">Checklist</h2>
+              <ol class="checklist">
+                ${data.checklist.map((item, index) => {
+                  const id = `check-${key}-${index + 1}`;
+                  return `<li><input id="${id}" type="checkbox"><label for="${id}">${item}</label></li>`;
+                }).join("")}
+              </ol>
+            </section>
+
+            <section class="page-panel" aria-labelledby="${key}-prompt-title">
+              <h2 id="${key}-prompt-title">Prompt guide</h2>
+              <div class="prompt-box">
+                <div class="prompt-toolbar">
+                  <div>
+                    <div class="prompt-label">Guide prompt</div>
+                    <strong>${data.name}</strong>
+                  </div>
+                  <button class="copy-button" type="button" data-copy="${key}">Copy prompt</button>
+                </div>
+                <textarea readonly spellcheck="false">${data.prompt}</textarea>
+              </div>
+            </section>
+          </div>
+
+          <nav class="pager" aria-label="${data.name} navigation">
+            <a class="button" href="#${data.previous}">${previousLabel}</a>
+            <a class="button button-primary" href="#${data.next}">${nextLabel}</a>
+          </nav>
+        </div>`;
     }
 
-    workflowButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setWorkflow(button.dataset.workflow || button.dataset.workflowNav, Boolean(button.dataset.workflow));
+    function ensureWorkflowPages() {
+      Object.keys(workflows).forEach((key) => {
+        const page = document.querySelector(`[data-page="${key}"]`);
+        if (!page.innerHTML.trim()) {
+          page.innerHTML = workflowMarkup(key);
+        }
       });
-    });
+    }
 
-    promptButtons.forEach((button) => {
-      button.addEventListener("click", () => setWorkflow(button.dataset.prompt, false));
-    });
+    function pageFromHash() {
+      const key = window.location.hash.replace("#", "");
+      return key === "free" || key === "pro" || key === "repo" ? key : "home";
+    }
 
-    copyPrompt.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(promptText.value);
-      copyPrompt.textContent = "Copied";
+    function showPage(key) {
+      pages.forEach((page) => {
+        page.hidden = page.dataset.page !== key;
+      });
+      navLinks.forEach((link) => {
+        const isCurrent = link.dataset.nav === key;
+        if (isCurrent) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+      document.title = key === "home" ? "Exam Paper Variation CPD" : `${workflows[key].name} | Exam Paper Variation CPD`;
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function route() {
+      showPage(pageFromHash());
+    }
+
+    async function copyPrompt(key, button) {
+      await navigator.clipboard.writeText(workflows[key].prompt);
+      button.textContent = "Copied";
       window.setTimeout(() => {
-        copyPrompt.textContent = "Copy prompt";
+        button.textContent = "Copy prompt";
       }, 1400);
-    });
+    }
 
-    setWorkflow("free", false);
+    ensureWorkflowPages();
+    window.addEventListener("hashchange", route);
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-copy]");
+      if (button) {
+        copyPrompt(button.dataset.copy, button);
+      }
+    });
+    route();
   </script>
 </body>
 </html>
