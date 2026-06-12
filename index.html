@@ -246,6 +246,17 @@
       box-shadow: inset 4px 0 0 var(--clay);
     }
 
+    .workflow-card[aria-pressed="false"] {
+      opacity: 0.34;
+      filter: grayscale(0.65);
+    }
+
+    .workflow-card[aria-pressed="false"]:hover,
+    .workflow-card[aria-pressed="false"]:focus-visible {
+      opacity: 0.72;
+      filter: grayscale(0.2);
+    }
+
     .workflow-letter {
       width: 42px;
       height: 42px;
@@ -416,9 +427,18 @@
       align-items: start;
     }
 
+    .prompt-layout-single {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 820px;
+    }
+
     .prompt-menu {
       display: grid;
       gap: 10px;
+    }
+
+    .prompt-menu[hidden] {
+      display: none;
     }
 
     .prompt-option {
@@ -670,8 +690,8 @@
           <p class="muted">Each prompt assumes the exam skill has already been added to Claude or the repository assistant. The repository workflow also asks for validation HTML and keyword highlighting.</p>
         </div>
 
-        <div class="prompt-layout">
-          <div class="prompt-menu" aria-label="Prompt options">
+        <div class="prompt-layout prompt-layout-single">
+          <div class="prompt-menu" aria-label="Prompt options" hidden>
             <button class="prompt-option" type="button" data-prompt="free" aria-pressed="true">
               <strong>A. Free Claude</strong>
               <span>First two questions only.</span>
@@ -804,6 +824,7 @@ In the repository, produce:
 
     const workflowButtons = [...document.querySelectorAll("[data-workflow], [data-workflow-nav]")];
     const promptButtons = [...document.querySelectorAll("[data-prompt]")];
+    const workflowCards = [...document.querySelectorAll("[data-workflow]")];
     const selectedWorkflowName = document.querySelector("#selectedWorkflowName");
     const workflowTitle = document.querySelector("#workflowTitle");
     const workflowDescription = document.querySelector("#workflowDescription");
@@ -818,6 +839,10 @@ In the repository, produce:
       workflowButtons.forEach((button) => {
         const buttonKey = button.dataset.workflow || button.dataset.workflowNav;
         button.setAttribute("aria-pressed", String(buttonKey === key));
+      });
+      workflowCards.forEach((button) => {
+        const isSelected = button.dataset.workflow === key;
+        button.setAttribute("aria-current", isSelected ? "step" : "false");
       });
       promptButtons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.prompt === key));
