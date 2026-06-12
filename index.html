@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam Paper Variation CPD</title>
+  <meta name="description" content="A minimal CPD guide for using Claude, Claude Pro, Codex, or Claude Code to variate exam questions with an exam skill.">
+  <style>
+    :root {
+      --paper: #f8f4ec;
+      --ink: #191817;
+      --muted: #6f6860;
+      --line: #ddd5ca;
+      --clay: #b96b4a;
+      --sage: #65715f;
+      --slate: #25292c;
+      --white: #fffaf2;
+      --focus: #2f6fed;
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(25, 24, 23, 0.045) 1px, transparent 1px) 0 0 / 64px 64px,
+        var(--paper);
+      letter-spacing: 0;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 244, 236, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+      font-weight: 760;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 50%;
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .menu button,
+    .ghost-button,
+    .primary-button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .menu button[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: grid;
+      align-items: center;
+      padding: 56px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(320px, 1.04fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--clay);
+      font-size: 13px;
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(46px, 7vw, 94px);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.35;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      font-weight: 720;
+    }
+
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: rgba(255, 250, 242, 0.52);
+      font-weight: 680;
+    }
+
+    .workflow-panel {
+      border: 1px solid var(--ink);
+      background: var(--white);
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 18px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 780;
+    }
+
+    .workflow-list {
+      display: grid;
+      gap: 0;
+      padding: 18px;
+    }
+
+    .workflow-card {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-bottom-width: 0;
+      padding: 20px;
+      background: var(--white);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .workflow-card:first-child {
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .workflow-card:last-child {
+      border-bottom-width: 1px;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .workflow-card[aria-pressed="true"] {
+      background: #efe6da;
+      border-color: var(--ink);
+      box-shadow: inset 4px 0 0 var(--clay);
+    }
+
+    .workflow-letter {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-weight: 800;
+    }
+
+    .workflow-card h2 {
+      margin: 0 0 5px;
+      font-size: 21px;
+      line-height: 1.12;
+    }
+
+    .workflow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .arrow {
+      color: var(--muted);
+      font-size: 24px;
+    }
+
+    .section {
+      padding: 84px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-dark {
+      background: var(--slate);
+      color: var(--paper);
+      border-top: 0;
+    }
+
+    .section-dark .eyebrow,
+    .section-dark .muted,
+    .section-dark .step-note {
+      color: #d5c7bb;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.74fr) minmax(280px, 0.42fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section h2 {
+      margin-bottom: 0;
+      font-size: clamp(34px, 4.7vw, 64px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, 0.56);
+    }
+
+    .step {
+      min-height: 270px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .step:last-child {
+      border-right: 0;
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 38px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-weight: 780;
+    }
+
+    .step h3 {
+      margin-bottom: 12px;
+      font-size: 23px;
+      line-height: 1.12;
+    }
+
+    .step-note {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .summary-box {
+      padding: 28px;
+      border: 1px solid rgba(248, 244, 236, 0.32);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 242, 0.05);
+    }
+
+    .summary-box h3 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      line-height: 1.08;
+    }
+
+    .summary-box p {
+      margin-bottom: 22px;
+      line-height: 1.55;
+    }
+
+    .download-link {
+      width: 100%;
+      border-color: var(--paper);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 17px 18px;
+      border: 1px solid rgba(248, 244, 236, 0.24);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 242, 0.05);
+      line-height: 1.42;
+    }
+
+    .checklist input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--clay);
+    }
+
+    .prompt-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1.18fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .prompt-menu {
+      display: grid;
+      gap: 10px;
+    }
+
+    .prompt-option {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 242, 0.62);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .prompt-option[aria-pressed="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .prompt-option strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .prompt-option span {
+      color: inherit;
+      opacity: 0.72;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .prompt-box {
+      border: 1px solid var(--ink);
+      background: var(--white);
+    }
+
+    .prompt-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .prompt-label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 780;
+    }
+
+    .copy-button {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 720;
+      white-space: nowrap;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 330px;
+      padding: 22px;
+      border: 0;
+      resize: vertical;
+      background: transparent;
+      color: var(--ink);
+      font: 16px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    .footer {
+      padding: 38px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner,
+      .section-header,
+      .hero-grid,
+      .checklist-grid,
+      .prompt-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        display: grid;
+        padding: 14px 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .step:last-child {
+        border-bottom: 0;
+      }
+
+      .workflow-card {
+        grid-template-columns: 48px 1fr;
+      }
+
+      .arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shell {
+        width: min(100% - 22px, 1160px);
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .workflow-card,
+      .step,
+      .summary-box {
+        padding: 18px;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-button,
+      .ghost-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand" aria-label="Exam Paper Variation CPD">
+        <span class="brand-mark">CPD</span>
+        <span>Exam variation workflow</span>
+      </div>
+      <nav class="menu" aria-label="Workflow menu">
+        <button type="button" data-workflow-nav="free" aria-pressed="true">A. Free Claude</button>
+        <button type="button" data-workflow-nav="pro" aria-pressed="false">B. Claude $20</button>
+        <button type="button" data-workflow-nav="repo" aria-pressed="false">C. Repository</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="choose" class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Screen 1 - choose your workflow</p>
+          <h1>Variate exam papers with an exam skill.</h1>
+          <p class="lede">A clean CPD path for teachers to install one Claude skill, choose the right workflow, and try a first paper variation without getting lost in tooling.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#instructions">Continue to checklist</a>
+            <a class="ghost-button" href="exam-variation.skill" download>Download skill</a>
+          </div>
+        </div>
+
+        <div class="workflow-panel" aria-label="Workflow picker">
+          <div class="panel-head">
+            <span>Menu</span>
+            <span id="selectedWorkflowName">Free Claude workflow</span>
+          </div>
+          <div class="workflow-list">
+            <button class="workflow-card" type="button" data-workflow="free" aria-pressed="true">
+              <span class="workflow-letter">A</span>
+              <span>
+                <h2>Free Claude workflow</h2>
+                <p>Use Claude chat to variate the first two questions and learn the pattern safely.</p>
+              </span>
+              <span class="arrow" aria-hidden="true">></span>
+            </button>
+            <button class="workflow-card" type="button" data-workflow="pro" aria-pressed="false">
+              <span class="workflow-letter">B</span>
+              <span>
+                <h2>Claude $20 subscription workflow</h2>
+                <p>Use a larger context window to variate the full paper in one guided pass.</p>
+              </span>
+              <span class="arrow" aria-hidden="true">></span>
+            </button>
+            <button class="workflow-card" type="button" data-workflow="repo" aria-pressed="false">
+              <span class="workflow-letter">C</span>
+              <span>
+                <h2>Repository workflow</h2>
+                <p>Use Codex or Claude Code to vary, validate, and inspect a page-matched HTML output.</p>
+              </span>
+              <span class="arrow" aria-hidden="true">></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instructions" class="section section-dark">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Screen 2 - instructions and checklist</p>
+            <h2>Install the skill, add the paper, run one controlled variation.</h2>
+          </div>
+          <p class="muted" id="workflowSummary">Start with two questions. This keeps the first run small enough to inspect manually while teachers learn what the skill changes and what it must preserve.</p>
+        </div>
+
+        <div class="checklist-grid">
+          <aside class="summary-box">
+            <h3 id="workflowTitle">Free Claude workflow</h3>
+            <p id="workflowDescription">Best for first contact, no paid account, or a short live CPD demonstration.</p>
+            <a class="primary-button download-link" href="exam-variation.skill" download>Download exam-variation.skill</a>
+          </aside>
+
+          <ol class="checklist" id="setupChecklist" aria-label="Setup checklist"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompt" class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Screen 3 - prompt guide</p>
+            <h2>Copy the version that matches the workflow.</h2>
+          </div>
+          <p class="muted">Each prompt assumes the exam skill has already been added to Claude or the repository assistant. The repository workflow also asks for validation HTML and keyword highlighting.</p>
+        </div>
+
+        <div class="prompt-layout">
+          <div class="prompt-menu" aria-label="Prompt options">
+            <button class="prompt-option" type="button" data-prompt="free" aria-pressed="true">
+              <strong>A. Free Claude</strong>
+              <span>First two questions only.</span>
+            </button>
+            <button class="prompt-option" type="button" data-prompt="pro" aria-pressed="false">
+              <strong>B. Claude $20</strong>
+              <span>Entire paper variation.</span>
+            </button>
+            <button class="prompt-option" type="button" data-prompt="repo" aria-pressed="false">
+              <strong>C. Repository</strong>
+              <span>Entire paper plus validation HTML.</span>
+            </button>
+          </div>
+
+          <div class="prompt-box">
+            <div class="prompt-toolbar">
+              <div>
+                <div class="prompt-label">Guide prompt</div>
+                <strong id="promptTitle">Free Claude workflow</strong>
+              </div>
+              <button class="copy-button" type="button" id="copyPrompt">Copy prompt</button>
+            </div>
+            <textarea id="promptText" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="steps" aria-label="CPD flow">
+          <div class="step">
+            <span class="step-number">1</span>
+            <h3>Choose the right scale.</h3>
+            <p class="step-note">Free Claude for a small trial, paid Claude for a full paper, repository tools when validation and repeatability matter.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <h3>Keep the paper structure fixed.</h3>
+            <p class="step-note">The task is variation, not redesign. Marks, command words, page order, and question intent stay stable.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <h3>Inspect the difference.</h3>
+            <p class="step-note">Compare original and varied versions, then highlight changed keywords so the class-ready output is easy to trust.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">Static HTML CPD site. Host this folder directly on GitHub Pages or any simple web server.</div>
+  </footer>
+
+  <script>
+    const workflows = {
+      free: {
+        name: "Free Claude workflow",
+        description: "Best for first contact, no paid account, or a short live CPD demonstration.",
+        summary: "Start with two questions. This keeps the first run small enough to inspect manually while teachers learn what the skill changes and what it must preserve.",
+        checklist: [
+          "Choose exam paper.",
+          "Compress exam paper to save tokens at <a href=\"https://www.ilovepdf.com/compress_pdf\" target=\"_blank\" rel=\"noopener noreferrer\">iLovePDF Compress PDF</a>.",
+          "Sign up to Claude.",
+          "Download <strong>exam-variation.skill</strong> from this page.",
+          "Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload, then upload the skill."
+        ],
+        prompt: `Use the exam skill to variate the first 2 questions.
+
+Keep the original question structure, command words, mark values, page order, and difficulty as close as possible.
+
+Only change the contextual keywords, data values, names, examples, or surface details needed to create a fresh version.
+
+After the variation, provide:
+1. The varied version of questions 1 and 2.
+2. A short change log listing what was altered.
+3. Any checks I should do before using this with students.`
+      },
+      pro: {
+        name: "Claude $20 subscription workflow",
+        description: "Best when the whole paper and mark scheme can sit in one conversation with enough room for review.",
+        summary: "Use the larger workflow to process the whole paper, then ask for a structured change log so every variation is auditable.",
+        checklist: [
+          "Choose exam paper.",
+          "Sign up to Claude and use the $20 subscription workflow.",
+          "Download <strong>exam-variation.skill</strong> from this page.",
+          "Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload, then upload the skill.",
+          "Upload the full paper and ask Claude to variate the entire paper."
+        ],
+        prompt: `Use the exam skill to variate the entire paper.
+
+Keep the original question structure, command words, mark values, page order, and difficulty as close as possible.
+
+Only change contextual keywords, data values, names, examples, diagrams, scenarios, or surface details where a fresh version is needed.
+
+Work through the paper question by question. After the variation, provide:
+1. The full varied paper.
+2. A question-by-question change log.
+3. Any places where the mark scheme should be checked or lightly adjusted.
+4. A final checklist confirming that marks, command words, and question intent have been preserved.`
+      },
+      repo: {
+        name: "Repository workflow",
+        description: "Best when you want repeatable outputs, visible validation, and tighter control over page-level layout.",
+        summary: "Use Codex or Claude Code to make the variation in files, then generate validation HTML that compares original and varied pages.",
+        checklist: [
+          "Add the original exam paper, mark scheme, and source files to the repository.",
+          "Download <strong>exam-variation.skill</strong> from this page and keep it with the project notes.",
+          "Ask Codex or Claude Code to variate the entire paper.",
+          "Generate validation HTML that compares original and varied pages.",
+          "Use the keyword highlight toggle to inspect changes and fix any page drift before publishing."
+        ],
+        prompt: `Use the exam skill to variate the entire paper, and produce a validation HTML to ensure each page is near identical other than altered keywords.
+
+Provide a toggle option to highlight keywords.
+
+Keep the original question structure, command words, mark values, page order, pagination, and difficulty as close as possible.
+
+Only change contextual keywords, data values, names, examples, diagrams, scenarios, or surface details where a fresh version is needed.
+
+In the repository, produce:
+1. The varied paper output.
+2. A validation HTML file comparing original and varied pages.
+3. A keyword highlight toggle for changed terms.
+4. A question-by-question change log.
+5. A short QA summary covering layout match, marks, command words, and question intent.`
+      }
+    };
+
+    const workflowButtons = [...document.querySelectorAll("[data-workflow], [data-workflow-nav]")];
+    const promptButtons = [...document.querySelectorAll("[data-prompt]")];
+    const selectedWorkflowName = document.querySelector("#selectedWorkflowName");
+    const workflowTitle = document.querySelector("#workflowTitle");
+    const workflowDescription = document.querySelector("#workflowDescription");
+    const workflowSummary = document.querySelector("#workflowSummary");
+    const setupChecklist = document.querySelector("#setupChecklist");
+    const promptTitle = document.querySelector("#promptTitle");
+    const promptText = document.querySelector("#promptText");
+    const copyPrompt = document.querySelector("#copyPrompt");
+
+    function setWorkflow(key, shouldScroll) {
+      const data = workflows[key];
+      workflowButtons.forEach((button) => {
+        const buttonKey = button.dataset.workflow || button.dataset.workflowNav;
+        button.setAttribute("aria-pressed", String(buttonKey === key));
+      });
+      promptButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.prompt === key));
+      });
+      selectedWorkflowName.textContent = data.name;
+      workflowTitle.textContent = data.name;
+      workflowDescription.textContent = data.description;
+      workflowSummary.textContent = data.summary;
+      setupChecklist.innerHTML = data.checklist.map((item, index) => {
+        const id = `check-${key}-${index + 1}`;
+        return `<li><input id="${id}" type="checkbox"><label for="${id}">${item}</label></li>`;
+      }).join("");
+      promptTitle.textContent = data.name;
+      promptText.value = data.prompt;
+      if (shouldScroll) {
+        document.querySelector("#instructions").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    workflowButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setWorkflow(button.dataset.workflow || button.dataset.workflowNav, Boolean(button.dataset.workflow));
+      });
+    });
+
+    promptButtons.forEach((button) => {
+      button.addEventListener("click", () => setWorkflow(button.dataset.prompt, false));
+    });
+
+    copyPrompt.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(promptText.value);
+      copyPrompt.textContent = "Copied";
+      window.setTimeout(() => {
+        copyPrompt.textContent = "Copy prompt";
+      }, 1400);
+    });
+
+    setWorkflow("free", false);
+  </script>
+</body>
+</html>
