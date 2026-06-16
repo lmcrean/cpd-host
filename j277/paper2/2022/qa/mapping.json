@@ -1,0 +1,36 @@
+{
+  "sourcePdf": "../original/June 2022_compressed.pdf",
+  "pageImagePattern": "pages/page-{page}.png",
+  "html": {
+    "question": "../variation/Question_Paper.html",
+    "markscheme": "../variation/Mark_Scheme.html"
+  },
+  "questions": [
+    { "id": "q-1a", "label": "1(a)", "title": "Selection vs iteration", "questionPages": [2], "markschemePages": [21], "questionAnchor": "q-1a", "markschemeAnchor": "q-1a" },
+    { "id": "q-1b", "label": "1(b)", "title": "Increment a variable", "questionPages": [2], "markschemePages": [22], "questionAnchor": "q-1b", "markschemeAnchor": "q-1b" },
+    { "id": "q-1c", "label": "1(c)", "title": "Computational thinking terms", "questionPages": [2], "markschemePages": [23], "questionAnchor": "q-1c", "markschemeAnchor": "q-1c" },
+    { "id": "q-2ai", "label": "2(a)(i)", "title": "Logic gates", "questionPages": [3], "markschemePages": [24], "questionAnchor": "q-2ai", "markschemeAnchor": "q-2ai" },
+    { "id": "q-2aii", "label": "2(a)(ii)", "title": "Truth table purpose", "questionPages": [3, 4], "markschemePages": [25], "questionAnchor": "q-2aii", "markschemeAnchor": "q-2aii" },
+    { "id": "q-2aiii", "label": "2(a)(iii)", "title": "Truth table rows", "questionPages": [4], "markschemePages": [25], "questionAnchor": "q-2aiii", "markschemeAnchor": "q-2aiii" },
+    { "id": "q-2b", "label": "2(b)", "title": "Flowchart algorithm", "questionPages": [5], "markschemePages": [26, 27], "questionAnchor": "q-2b", "markschemeAnchor": "q-2b" },
+    { "id": "q-2c", "label": "2(c)", "title": "Additional inputs", "questionPages": [6], "markschemePages": [27], "questionAnchor": "q-2c", "markschemeAnchor": "q-2c" },
+    { "id": "q-2di", "label": "2(d)(i)", "title": "Casting", "questionPages": [6], "markschemePages": [28], "questionAnchor": "q-2di", "markschemeAnchor": "q-2di" },
+    { "id": "q-2dii", "label": "2(d)(ii)", "title": "Trace table", "questionPages": [7], "markschemePages": [28, 29], "questionAnchor": "q-2dii", "markschemeAnchor": "q-2dii" },
+    { "id": "q-3a", "label": "3(a)", "title": "Merge sort", "questionPages": [7, 8], "markschemePages": [30, 31], "questionAnchor": "q-3a", "markschemeAnchor": "q-3a" },
+    { "id": "q-3b", "label": "3(b)", "title": "Binary search", "questionPages": [9], "markschemePages": [31, 32], "questionAnchor": "q-3b", "markschemeAnchor": "q-3b" },
+    { "id": "q-3c", "label": "3(c)", "title": "Linear search", "questionPages": [9], "markschemePages": [33], "questionAnchor": "q-3c", "markschemeAnchor": "q-3c" },
+    { "id": "q-4a", "label": "4(a)", "title": "Maintainability", "questionPages": [10], "markschemePages": [34], "questionAnchor": "q-4a", "markschemeAnchor": "q-4a" },
+    { "id": "q-4bi", "label": "4(b)(i)", "title": "Arithmetic operators", "questionPages": [11], "markschemePages": [34], "questionAnchor": "q-4bi", "markschemeAnchor": "q-4bi" },
+    { "id": "q-4bii", "label": "4(b)(ii)", "title": "Languages and translators", "questionPages": [11], "markschemePages": [34], "questionAnchor": "q-4bii", "markschemeAnchor": "q-4bii" },
+    { "id": "q-4c", "label": "4(c)", "title": "Total and average algorithm", "questionPages": [12, 13], "markschemePages": [35, 36], "questionAnchor": "q-4c", "markschemeAnchor": "q-4c" },
+    { "id": "q-5ai", "label": "5(a)(i)", "title": "Field data types", "questionPages": [13], "markschemePages": [37], "questionAnchor": "q-5ai", "markschemeAnchor": "q-5ai" },
+    { "id": "q-5aii", "label": "5(a)(ii)", "title": "Boolean field", "questionPages": [13], "markschemePages": [37], "questionAnchor": "q-5aii", "markschemeAnchor": "q-5aii" },
+    { "id": "q-5aiii", "label": "5(a)(iii)", "title": "Correct SQL", "questionPages": [13, 14], "markschemePages": [38], "questionAnchor": "q-5aiii", "markschemeAnchor": "q-5aiii" },
+    { "id": "q-5bi", "label": "5(b)(i)", "title": "Validation program", "questionPages": [15, 16], "markschemePages": [39, 40, 41], "questionAnchor": "q-5bi", "markschemeAnchor": "q-5bi" },
+    { "id": "q-5bii", "label": "5(b)(ii)", "title": "Test plan", "questionPages": [16], "markschemePages": [42], "questionAnchor": "q-5bii", "markschemeAnchor": "q-5bii" },
+    { "id": "q-5ci", "label": "5(c)(i)", "title": "Function definition", "questionPages": [16, 17], "markschemePages": [42, 43], "questionAnchor": "q-5ci", "markschemeAnchor": "q-5ci" },
+    { "id": "q-5cii", "label": "5(c)(ii)", "title": "Function call", "questionPages": [17], "markschemePages": [44], "questionAnchor": "q-5cii", "markschemeAnchor": "q-5cii" },
+    { "id": "q-5d", "label": "5(d)", "title": "Logic errors", "questionPages": [18], "markschemePages": [45], "questionAnchor": "q-5d", "markschemeAnchor": "q-5d" },
+    { "id": "q-5e", "label": "5(e)", "title": "Iterative pricing algorithm", "questionPages": [19, 20], "markschemePages": [46], "questionAnchor": "q-5e", "markschemeAnchor": "q-5e" }
+  ]
+}

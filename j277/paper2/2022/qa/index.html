@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>J277/02 Original Comparison QA</title>
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:light;--ink:#17202a;--muted:#65717f;--line:#cfd6df;--soft:#f4f6f8;--accent:#0f6b5f;--accent-2:#b6432f}
+body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:#fff}
+.app{display:grid;grid-template-columns:88px minmax(280px,1fr) minmax(320px,1fr);height:100vh;overflow:hidden}
+.nav{border-right:1px solid var(--line);background:#f8fafb;display:flex;flex-direction:column;min-height:0}
+.brand{height:58px;display:grid;place-items:center;border-bottom:1px solid var(--line);font-weight:bold;font-size:12px;line-height:1.1;text-align:center}
+.nav-list{overflow:auto;padding:8px 6px;display:flex;flex-direction:column;gap:5px}
+.nav button{appearance:none;border:1px solid transparent;background:transparent;border-radius:6px;color:var(--ink);font-size:12px;font-weight:bold;padding:8px 4px;cursor:pointer;line-height:1.1}
+.nav button:hover{border-color:var(--line);background:#fff}
+.nav button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pane{display:flex;flex-direction:column;min-width:0;min-height:0}
+.pane + .pane{border-left:1px solid var(--line)}
+.toolbar{height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;border-bottom:1px solid var(--line);background:#fff}
+.title{min-width:0}
+.title strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title span{display:block;color:var(--muted);font-size:12px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.segmented{display:inline-grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:7px;overflow:hidden;flex:none}
+.segmented button{border:0;background:#fff;padding:8px 10px;font-size:12px;font-weight:bold;cursor:pointer;color:var(--ink)}
+.segmented button + button{border-left:1px solid var(--line)}
+.segmented button.active{background:var(--accent-2);color:#fff}
+.pages{overflow:auto;background:var(--soft);padding:14px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.page-card{width:min(100%,900px);background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 4px rgba(20,32,43,.08);overflow:hidden}
+.page-card header{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);background:#fff}
+.page-card img{display:block;width:100%;height:auto}
+.html-frame{width:100%;height:100%;border:0;background:#fff}
+.hint{font-size:12px;color:var(--muted)}
+.spill{color:var(--accent-2);font-weight:bold}
+@media (max-width:900px){
+  .app{grid-template-columns:72px 1fr;grid-template-rows:50vh 50vh}
+  .nav{grid-row:1 / span 2}
+  .pane + .pane{border-left:0;border-top:1px solid var(--line)}
+  .toolbar{height:54px}
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <nav class="nav" aria-label="Question navigation">
+    <div class="brand">J277<br>QA</div>
+    <div class="nav-list" id="navList"></div>
+  </nav>
+
+  <section class="pane" aria-label="Original PDF pages">
+    <div class="toolbar">
+      <div class="title">
+        <strong id="leftTitle">Original PDF</strong>
+        <span id="pageSummary">Loading mapping...</span>
+      </div>
+      <span class="hint">PNG pages</span>
+    </div>
+    <div class="pages" id="pages"></div>
+  </section>
+
+  <section class="pane" aria-label="Variation HTML">
+    <div class="toolbar">
+      <div class="title">
+        <strong id="rightTitle">Variation HTML</strong>
+        <span id="questionTitle"></span>
+      </div>
+      <div class="segmented" role="group" aria-label="Compare mode">
+        <button type="button" id="questionMode" class="active">Paper</button>
+        <button type="button" id="markschemeMode">Scheme</button>
+      </div>
+    </div>
+    <iframe class="html-frame" id="htmlFrame" title="Mapped variation HTML"></iframe>
+  </section>
+</main>
+
+<script>
+const state = { mode: 'question', currentId: '', mapping: null };
+const navList = document.getElementById('navList');
+const pages = document.getElementById('pages');
+const pageSummary = document.getElementById('pageSummary');
+const questionTitle = document.getElementById('questionTitle');
+const rightTitle = document.getElementById('rightTitle');
+const leftTitle = document.getElementById('leftTitle');
+const htmlFrame = document.getElementById('htmlFrame');
+const modeButtons = {
+  question: document.getElementById('questionMode'),
+  markscheme: document.getElementById('markschemeMode')
+};
+
+function pagePath(page) {
+  return state.mapping.pageImagePattern.replace('{page}', String(page).padStart(2, '0'));
+}
+
+function currentQuestion() {
+  return state.mapping.questions.find(q => q.id === state.currentId) || state.mapping.questions[0];
+}
+
+function renderNav() {
+  navList.innerHTML = '';
+  state.mapping.questions.forEach(q => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = q.label;
+    button.title = `${q.label}: ${q.title}`;
+    button.className = q.id === state.currentId ? 'active' : '';
+    button.addEventListener('click', () => {
+      state.currentId = q.id;
+      render();
+    });
+    navList.appendChild(button);
+  });
+}
+
+function renderPages(question) {
+  const key = state.mode === 'question' ? 'questionPages' : 'markschemePages';
+  const selectedPages = question[key];
+  pages.innerHTML = '';
+  selectedPages.forEach(page => {
+    const card = document.createElement('article');
+    card.className = 'page-card';
+    const header = document.createElement('header');
+    const pageLabel = document.createElement('strong');
+    pageLabel.textContent = `Original page ${page}`;
+    const sourceLabel = document.createElement('span');
+    sourceLabel.textContent = state.mode === 'question' ? 'Question paper' : 'Mark scheme';
+    header.append(pageLabel, sourceLabel);
+    const img = document.createElement('img');
+    img.src = pagePath(page);
+    img.alt = `Original PDF page ${page}`;
+    img.loading = 'eager';
+    card.append(header, img);
+    pages.appendChild(card);
+  });
+  const spill = selectedPages.length > 1 ? ' spillover pages' : ' page';
+  pageSummary.innerHTML = `${selectedPages.length} original ${selectedPages.length > 1 ? `<span class="spill">${spill}</span>` : spill}: ${selectedPages.join(', ')}`;
+}
+
+function renderFrame(question) {
+  const htmlPath = state.mapping.html[state.mode];
+  const anchor = state.mode === 'question' ? question.questionAnchor : question.markschemeAnchor;
+  htmlFrame.src = `${htmlPath}#${anchor}`;
+}
+
+function renderMode() {
+  Object.entries(modeButtons).forEach(([mode, button]) => {
+    button.classList.toggle('active', mode === state.mode);
+    button.setAttribute('aria-pressed', String(mode === state.mode));
+  });
+}
+
+function render() {
+  const question = currentQuestion();
+  renderNav();
+  renderMode();
+  renderPages(question);
+  renderFrame(question);
+  leftTitle.textContent = state.mode === 'question' ? 'Original Question Paper' : 'Original Mark Scheme';
+  rightTitle.textContent = state.mode === 'question' ? 'Variation Question Paper' : 'Variation Mark Scheme';
+  questionTitle.textContent = `${question.label} - ${question.title}`;
+}
+
+modeButtons.question.addEventListener('click', () => {
+  state.mode = 'question';
+  render();
+});
+modeButtons.markscheme.addEventListener('click', () => {
+  state.mode = 'markscheme';
+  render();
+});
+
+fetch('mapping.json')
+  .then(response => {
+    if (!response.ok) throw new Error(`Could not load mapping.json (${response.status})`);
+    return response.json();
+  })
+  .then(mapping => {
+    state.mapping = mapping;
+    state.currentId = mapping.questions[0].id;
+    render();
+  })
+  .catch(error => {
+    pageSummary.textContent = error.message;
+    pages.textContent = 'Start a static server from this folder if your browser blocks local JSON loading.';
+  });
+</script>
+</body>
+</html>
