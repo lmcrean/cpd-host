@@ -18,10 +18,7 @@
       <section class="page-panel" aria-labelledby="claude-chat-checklist-title">
         <h2 id="claude-chat-checklist-title">Checklist</h2>
         <ol class="checklist">
-          <li><input id="check-claude-chat-1" type="checkbox"><label for="check-claude-chat-1">Choose exam paper.</label></li>
-          <li><input id="check-claude-chat-2" type="checkbox"><label for="check-claude-chat-2">Screenshot the question.</label></li>
-          <li><input id="check-claude-chat-3" type="checkbox"><label for="check-claude-chat-3">Screenshot the mark scheme.</label></li>
-          <li><input id="check-claude-chat-4" type="checkbox"><label for="check-claude-chat-4">Open Claude and start a new chat.</label></li>
+          <li><input id="check-claude-chat-4" type="checkbox"><label for="check-claude-chat-4">Open Claude and start a new chat. Sign up if needed.</label></li>
           <li><input id="check-claude-chat-5" type="checkbox"><label for="check-claude-chat-5">Download <strong>exam-variation.skill</strong> from this page.</label></li>
           <li>
             <input id="check-claude-chat-6" type="checkbox">
@@ -30,6 +27,9 @@
               <button class="inline-help-button" type="button" data-open-modal="instructions-modal">Show screenshot</button>
             </span>
           </li>
+          <li><input id="check-claude-chat-1" type="checkbox"><label for="check-claude-chat-1">Choose an exam paper to variate.</label></li>
+          <li><input id="check-claude-chat-2" type="checkbox"><label for="check-claude-chat-2">Screenshot the question.</label></li>
+          <li><input id="check-claude-chat-3" type="checkbox"><label for="check-claude-chat-3">Screenshot the mark scheme.</label></li>
           <li><input id="check-claude-chat-7" type="checkbox"><label for="check-claude-chat-7">Open a new chat, add the question paper and mark scheme screenshots, and ask Claude to variate the questions.</label></li>
         </ol>
       </section>
@@ -44,19 +44,15 @@
             </div>
             <button class="copy-button" type="button" data-copy-prompt>Copy prompt</button>
           </div>
-          <textarea readonly spellcheck="false">Use the exam skill to variate this paper.
+          <textarea readonly spellcheck="false">Use the exam skill to variate this question.
 
-If the full paper is too large for this chat, variate the first 2 questions only. If there is enough room, variate the entire paper.
-
-Keep the original question structure, command words, mark values, page order, and difficulty as close as possible.
+Keep the topic/ subject matter as close to the original as possible.
 
 Only change contextual keywords, data values, names, examples, diagrams, scenarios, or surface details where a fresh version is needed.
 
-After the variation, provide:
-1. The varied question or paper output.
-2. A question-by-question change log.
-3. Any places where the mark scheme should be checked or lightly adjusted.
-4. A final checklist confirming that marks, command words, and question intent have been preserved.</textarea>
+The goal is to iterate a new question of the same subject matter. We will begin by changing the trivial content and then move on to more complex variations.
+
+</textarea>
         </div>
       </section>
     </div>

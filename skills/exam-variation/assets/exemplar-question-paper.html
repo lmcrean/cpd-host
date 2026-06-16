@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Question Paper Exemplar</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;font-size:11pt;color:#000;margin:0;background:#fff;}
+.page{max-width:800px;margin:0 auto;padding:18mm 20mm;}
+h1{font-size:13pt;text-align:center;margin:0 0 8px;}
+.hdr{border:2px solid #000;padding:10px 14px;margin-bottom:18px;font-size:10pt;}
+.instructions{font-size:10pt;margin-bottom:14px;}
+.instructions ul{margin:4px 0;padding-left:18px;}
+hr.thin{border:none;border-top:1px solid #000;margin:14px 0;}
+.qn{margin-bottom:26px;}
+.qn p{margin:5px 0;}
+.qi{margin-left:16px;margin-bottom:12px;}
+.ans{margin:8px 0 4px 0;}
+.aline{border-bottom:1px dotted #555;margin-bottom:9px;min-height:18px;}
+.aline .endmark{float:right;font-weight:bold;}
+.markrow{text-align:right;font-weight:bold;margin:2px 0 10px;}
+pre,code{font-family:'Courier New',monospace;font-size:10pt;background:#f5f5f5;padding:8px;border:1px solid #bbb;display:block;margin:8px 0;white-space:pre;}
+.inline-code{display:inline;padding:1px 4px;}
+table.data{border-collapse:collapse;margin:8px 0;}
+table.data td,table.data th{border:1px solid #000;padding:4px 8px;text-align:center;}
+table.data th{background:#ddd;}
+.blank{display:inline-block;border-bottom:2px solid #000;min-width:160px;margin:0 4px;}
+.blank-sm{display:inline-block;border-bottom:2px solid #000;min-width:80px;margin:0 4px;}
+.stk{display:inline-table;border-collapse:collapse;margin:6px 0;}
+.stk td{border:1px solid #000;width:70px;height:22px;text-align:center;font-size:10pt;}
+.stk td.lbl{border:none;text-align:right;padding-right:5px;width:18px;font-size:10pt;}
+.pb{page-break-before:always;margin-top:0;}
+.changed{font-weight:normal;}
+@media print{
+  .page{padding:12mm 14mm;}
+  .pb{page-break-before:always;}
+}
+</style>
+</head>
+<body>
+<main class="page">
+<!-- ===================== QUESTION PAPER ===================== -->
+<p style="font-size:9pt;text-align:right;margin-bottom:4px;">Oxford Cambridge and RSA - Practice Variation</p>
+<div class="hdr">
+  <div><span style="font-weight:bold;">Candidate name:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:200px;">&nbsp;</span>
+  &nbsp; <span style="font-weight:bold;">Centre number:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:90px;">&nbsp;</span>
+  &nbsp; <span style="font-weight:bold;">Candidate number:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:70px;">&nbsp;</span></div>
+  <p style="margin:8px 0 0;font-size:10pt;"><strong>A Level Computer Science &nbsp; H446/02 Algorithms and Programming</strong> &nbsp;-&nbsp; Practice Variation</p>
+  <p style="margin:4px 0 0;font-size:10pt;">Time allowed: <strong>2 hours 30 minutes</strong> &nbsp;&nbsp; Total marks: <strong>140</strong></p>
+</div>
+
+<div class="instructions">
+  <strong>Instructions:</strong>
+  <ul>
+    <li>Use black ink. HB pencil may be used for graphs and diagrams only.</li>
+    <li>Answer <strong>all</strong> questions.</li>
+    <li>Write answers in the spaces provided.</li>
+    <li>Quality of extended response is assessed in questions marked with an asterisk (*).</li>
+  </ul>
+</div>
+
+<hr class="thin">
+
+<!-- ======================================================== Q1 -->
+<div class="qn">
+<p><strong>1 (a) (i)</strong>&nbsp; Describe the steps a <strong>bubble sort</strong> will take to sort items into ascending order.</p>
+<div class="qi">
+  <div class="ans">
+    <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+    <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+    <div class="aline"></div><div class="aline"><span class="endmark">[5]</span></div>
+  </div>
+</div>
+
+<div class="qi">
+  <p><strong>(ii)</strong>&nbsp; Nia and Marcus have both written a program that will perform a bubble sort to put these numbers into ascending order.</p>
+  <p style="text-align:center;font-size:13pt;letter-spacing:8px;margin:10px 0;">3 &nbsp;1 &nbsp;2 &nbsp;4 &nbsp;5 &nbsp;6 &nbsp;7</p>
+  <p>Nia's version will complete six passes. However, Marcus's version will only need to complete two passes.</p>
+  <p>Explain how Marcus may have made his version more efficient than Nia's version.</p>
+  <div class="ans">
+    <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+    <div class="aline"><span class="endmark">[2]</span></div>
+  </div>
+</div>
+
+<div class="qi">
+  <p><strong>(b)</strong>&nbsp; Describe how an insertion sort can be used to put the following data into ascending order.</p>
+  <p style="text-align:center;font-size:13pt;letter-spacing:8px;margin:10px 0;">14 &nbsp;3 &nbsp;9 &nbsp;27</p>
+  <div class="ans">
+    <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+    <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+    <div class="aline"></div><div class="aline"><span class="endmark">[5]</span></div>
+  </div>
+</div>
+
+<div class="qi">
+  <p><strong>(c)</strong>&nbsp; The following quick sort algorithm is made up of two functions called <code class="inline-code changed">divide()</code> and <code class="inline-code changed">sortData()</code>. The algorithm will sort an integer array into ascending numerical order.</p>
+<pre class="changed">01 function divide(data, left, right)
+02   marker = data[right]
+03   pos = left - 1
+04   for i = left to right-1
+05     if data[i] &lt; marker then
+06       pos = pos + 1
+07       swap = data[pos]
+08       data[pos] = data[i]
+09       data[i] = swap
+10     endif
+11   next i
+12   swap = data[pos + 1]
+13   data[pos + 1] = data[right]
+14   data[right] = swap
+15   return pos + 1
+16 endfunction
+17
+18 function sortData(data, left, right)
+19   if left &lt; right then
+20     divideIndex = divide(data, left, right)
+21     sortData(data, left, divideIndex - 1)
+22     sortData(data, divideIndex + 1, right)
+23   endif
+24 endfunction</pre>
+
+  <div class="qi">
+    <p><strong>(i)</strong>&nbsp; Identify which of the two functions is recursive and give all of the line numbers where recursive calls are made.</p>
+    <p>Recursive function name &nbsp;<span class="blank">&nbsp;</span></p>
+    <p>Recursive call line numbers &nbsp;<span class="blank">&nbsp;</span></p>
+    <p class="markrow">[2]</p>
+  </div>
+
+  <div class="qi">
+    <p><strong>(ii)</strong>&nbsp; Identify the type of iteration used in the function <code class="inline-code changed">divide()</code>.</p>
+    <div class="ans"><div class="aline" style="width:60%;display:inline-block;"></div><span style="float:right;font-weight:bold;">[1]</span></div>
+  </div>
+
+  <div class="qi" style="clear:both;">
+    <p><strong>(iii)</strong>&nbsp; Describe the role of the function <code class="inline-code changed">divide()</code> in the quick sort algorithm.</p>
+    <div class="ans">
+      <div class="aline"></div><div class="aline"></div><div class="aline"></div>
+      <div class="aline"><span class="endmark">[3]</span></div>
+    </div>
+  </div>
+
+  <div class="qi">
+    <p><strong>(iv)</strong>&nbsp; The algorithm needs to be changed to sort the integer array into <strong>descending</strong> numerical order.</p>
+    <p>Identify the line number that needs to be changed and write the amended line of code.</p>
+    <p>Line number &nbsp;<span class="blank-sm">&nbsp;</span></p>
+    <p>Amended line of code &nbsp;<span class="blank" style="min-width:340px;">&nbsp;</span></p>
+    <p class="markrow">[2]</p>
+  </div>
+
+  <div class="qi">
+    <p><strong>(v)</strong>&nbsp; The quick sort is an example of a divide-and-conquer algorithm.</p>
+    <p>Describe what divide-and-conquer means.</p>
+    <div class="ans">
+      <div class="aline"></div><div class="aline"></div>
+      <div class="aline"><span class="endmark">[2]</span></div>
+    </div>
+  </div>
+</div>
+</div><!-- end Q1 -->
+
+<p style="text-align:center;font-weight:bold;">END OF QUESTION PAPER</p>
+</main>
+</body>
+</html>
