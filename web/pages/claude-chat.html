@@ -5,15 +5,7 @@
         <p class="eyebrow">Workflow A</p>
         <h1>Claude Chat Workflow</h1>
       </div>
-      <aside class="summary-card">
-        <h2>Claude Chat</h2>
-        <p>Best for first contact, live CPD demonstrations, or using Claude directly with the exam skill.</p>
-        <a class="button button-primary" href="../exam-variation.skill" download>Download skill</a>
-      </aside>
     </div>
-
-    <p class="lede">Start small if you are using a free account, or work through the full paper if your chat has enough context available.</p>
-
     <div class="content-grid">
       <section class="page-panel" aria-labelledby="claude-chat-checklist-title">
         <h2 id="claude-chat-checklist-title">Checklist</h2>
@@ -34,17 +26,31 @@
         </ol>
       </section>
 
-      <section class="page-panel" aria-labelledby="claude-chat-prompt-title">
-        <h2 id="claude-chat-prompt-title">Prompt guide</h2>
-        <div class="prompt-box">
-          <div class="prompt-toolbar">
+      <div class="page-stack">
+        <section class="page-panel" aria-labelledby="claude-chat-skill-title">
+          <h2 id="claude-chat-skill-title">Claude skill</h2>
+          <div class="skill-card">
             <div>
-              <div class="prompt-label">Guide prompt</div>
-              <strong>Claude Chat Workflow</strong>
+              <strong>exam-variation.skill</strong>
             </div>
-            <button class="copy-button" type="button" data-copy-prompt>Copy prompt</button>
+            <div class="skill-actions">
+              <a class="button button-primary" href="../exam-variation.skill" download>Download skill</a>
+              <button class="button" type="button" data-open-modal="skill-modal" data-load-skill-file="../skills/exam-variation/SKILL.md">Inspect files</button>
+            </div>
           </div>
-          <textarea readonly spellcheck="false">Use the exam skill to variate this question.
+        </section>
+
+        <section class="page-panel" aria-labelledby="claude-chat-prompt-title">
+          <h2 id="claude-chat-prompt-title">Prompt guide</h2>
+          <div class="prompt-box">
+            <div class="prompt-toolbar">
+              <div>
+                <div class="prompt-label">Guide prompt</div>
+                <strong>Claude Chat Workflow</strong>
+              </div>
+              <button class="copy-button" type="button" data-copy-prompt>Copy prompt</button>
+            </div>
+            <textarea readonly spellcheck="false">Use the exam skill to variate this question.
 
 Keep the topic/ subject matter as close to the original as possible.
 
@@ -53,8 +59,9 @@ Only change contextual keywords, data values, names, examples, diagrams, scenari
 The goal is to iterate a new question of the same subject matter. We will begin by changing the trivial content and then move on to more complex variations.
 
 </textarea>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
     </div>
 
     <nav class="pager" aria-label="Claude Chat Workflow navigation">
@@ -70,6 +77,25 @@ The goal is to iterate a new question of the same subject matter. We will begin 
         <button class="modal-close" type="button" data-close-modal aria-label="Close screenshot">Close</button>
       </div>
       <img class="modal-image" src="instructions.png" alt="Claude settings screen showing where to upload a skill.">
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="skill-modal" role="dialog" aria-modal="true" aria-labelledby="skill-modal-title" hidden>
+    <div class="modal-panel modal-panel-wide">
+      <div class="modal-toolbar">
+        <h2 id="skill-modal-title">Exam variation skill files</h2>
+        <button class="modal-close" type="button" data-close-modal aria-label="Close skill file viewer">Close</button>
+      </div>
+      <div class="skill-viewer">
+        <div class="skill-file-list" aria-label="Skill files">
+          <button type="button" data-skill-file="../skills/exam-variation/SKILL.md">SKILL.md</button>
+          <button type="button" data-skill-file="../skills/exam-variation/assets/html-exemplars.md">assets/html-exemplars.md</button>
+          <button type="button" data-skill-file="../skills/exam-variation/assets/exemplar-question-paper.html">assets/exemplar-question-paper.html</button>
+          <button type="button" data-skill-file="../skills/exam-variation/assets/exemplar-mark-scheme.html">assets/exemplar-mark-scheme.html</button>
+          <button type="button" data-skill-file="../skills/exam-variation/assets/exemplar-quality-assurance-notes.html">assets/exemplar-quality-assurance-notes.html</button>
+        </div>
+        <div class="skill-file-preview markdown-preview" data-skill-content tabindex="0">Select a file to inspect.</div>
+      </div>
     </div>
   </div>
 </section>
