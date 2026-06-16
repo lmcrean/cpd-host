@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>J277/02 Practice Variation - Question Paper</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;font-size:11pt;color:#000;margin:0;background:#fff;}
+.page{max-width:800px;margin:0 auto;padding:18mm 20mm;}
+h1{font-size:13pt;text-align:center;margin:0 0 8px;}
+.hdr{border:2px solid #000;padding:10px 14px;margin-bottom:18px;font-size:10pt;}
+.instructions{font-size:10pt;margin-bottom:14px;}
+.instructions ul{margin:4px 0;padding-left:18px;}
+hr.thin{border:none;border-top:1px solid #000;margin:14px 0;}
+.qn{margin-bottom:26px;}
+.qn p{margin:5px 0;}
+.qi{margin-left:16px;margin-bottom:12px;}
+.ans{margin:8px 0 4px 0;}
+.aline{border-bottom:1px dotted #555;margin-bottom:9px;min-height:18px;}
+.aline .endmark{float:right;font-weight:bold;}
+.markrow{text-align:right;font-weight:bold;margin:2px 0 10px;}
+pre,code{font-family:'Courier New',monospace;font-size:10pt;background:#f5f5f5;padding:8px;border:1px solid #bbb;display:block;margin:8px 0;white-space:pre;}
+.inline-code{display:inline;padding:1px 4px;}
+table.data{border-collapse:collapse;margin:8px 0;}
+table.data td,table.data th{border:1px solid #000;padding:4px 8px;text-align:center;}
+table.data th{background:#ddd;}
+.blank{display:inline-block;border-bottom:2px solid #000;min-width:160px;margin:0 4px;}
+.blank-sm{display:inline-block;border-bottom:2px solid #000;min-width:80px;margin:0 4px;}
+.answerbox{border:1px solid #888;min-height:300px;margin:10px 0;}
+.answerbox.tall{min-height:430px;}
+.splitlist{margin:8px 0 8px 16px;}
+.splitlist .cell{display:inline-block;border:1px solid #999;min-width:48px;padding:6px 4px;margin:0 9px 6px 0;text-align:center;font-size:10pt;}
+.changed{font-weight:normal;}
+.pb{page-break-before:always;margin-top:0;}
+.wordbank{border:1px solid #000;padding:8px 12px;margin:8px 0;font-family:'Courier New',monospace;font-size:10pt;line-height:1.8;}
+@media print{.page{padding:12mm 14mm;}.pb{page-break-before:always;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p style="font-size:9pt;text-align:right;margin-bottom:4px;">Oxford Cambridge and RSA - Practice Variation</p>
+<div class="hdr">
+  <div><span style="font-weight:bold;">Candidate name:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:200px;">&nbsp;</span>
+  &nbsp; <span style="font-weight:bold;">Centre number:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:90px;">&nbsp;</span>
+  &nbsp; <span style="font-weight:bold;">Candidate number:</span> <span style="border-bottom:1px solid #000;display:inline-block;width:70px;">&nbsp;</span></div>
+  <p style="margin:8px 0 0;font-size:10pt;"><strong>GCSE (9-1) Computer Science &nbsp; J277/02 Computational thinking, algorithms and programming</strong> &nbsp;-&nbsp; Practice Variation</p>
+  <p style="margin:4px 0 0;font-size:10pt;">Duration: <strong>1 hour 30 minutes</strong> &nbsp;&nbsp; Total marks: <strong>80</strong></p>
+</div>
+
+<div class="instructions">
+  <strong>Instructions:</strong>
+  <ul>
+    <li>Use black ink. HB pencil may be used for graphs and diagrams only.</li>
+    <li>Answer <strong>all</strong> the questions.</li>
+    <li>Write your answer to each question in the space provided.</li>
+    <li>The number of marks is given in brackets [ ] at the end of each question or part question.</li>
+  </ul>
+</div>
+
+<hr class="thin">
+
+<!-- ===================================================== Q1 -->
+<div class="qn">
+<p><strong>1 (a)</strong>&nbsp; Tick (&#10003;) one box in each row to identify whether the OCR Reference Language code given is an example of <span class="changed">selection</span> or <span class="changed">iteration</span>.</p>
+<table class="data" style="margin-left:16px;">
+<tr><th style="text-align:left;width:330px;">OCR Reference Language code</th><th style="width:90px;">Selection</th><th style="width:90px;">Iteration</th></tr>
+<tr><td style="text-align:left;"><code class="inline-code changed">for j = 1 to 12<br>&nbsp;&nbsp;&nbsp;print(j)<br>next j</code></td><td></td><td></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code changed">while lives != 0<br>&nbsp;&nbsp;&nbsp;playRound()<br>endwhile</code></td><td></td><td></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code changed">if wrongAnswer() then<br>&nbsp;&nbsp;&nbsp;lives = 0<br>endif</code></td><td></td><td></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code changed">switch level:<br>&nbsp;&nbsp;&nbsp;case 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;points = 9<br>&nbsp;&nbsp;&nbsp;case 1:<br>&nbsp;&nbsp;&nbsp;&nbsp;points = 7<br>&nbsp;&nbsp;&nbsp;case 2:<br>&nbsp;&nbsp;&nbsp;&nbsp;points = 5<br>endswitch</code></td><td></td><td></td></tr>
+</table>
+<p class="markrow">[4]</p>
+
+<div class="qi">
+<p><strong>(b)</strong>&nbsp; Write pseudocode to increment a value held in a variable <code class="inline-code changed">points</code> by one.</p>
+<div class="ans"><div class="aline"><span class="endmark">[1]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(c)</strong>&nbsp; State the name of each of the following computational thinking techniques.</p>
+<p>Splitting a large problem into a set of smaller, more manageable problems.</p>
+<div class="aline"></div>
+<p>Removing unnecessary detail from a problem so that only the important parts remain.</p>
+<div class="aline"><span class="endmark">[2]</span></div>
+</div>
+</div>
+
+<!-- ===================================================== Q2 -->
+<div class="qn pb">
+<p><strong>2 (a)</strong>&nbsp; A <span class="changed">bowling alley</span> offers <span class="changed">half-price games</span> if the customer is a student or has a <span class="changed">membership card</span>. The offer is not valid on <span class="changed">Fridays</span>.</p>
+<p>A computer system is used to identify whether the customer can have a <span class="changed">half-price game</span>.</p>
+<p>The table identifies the three inputs to the computer system:</p>
+<table class="data" style="margin-left:16px;">
+<tr><th>Input</th><th style="text-align:left;width:300px;">Value</th></tr>
+<tr><td>A</td><td style="text-align:left;">Is a student</td></tr>
+<tr><td>B</td><td style="text-align:left;"><span class="changed">Has a membership card</span></td></tr>
+<tr><td>C</td><td style="text-align:left;"><span class="changed">The current day is Friday</span></td></tr>
+</table>
+<p>The logic system <strong>P = (A OR B) AND NOT C</strong> is used.</p>
+
+<div class="qi">
+<p><strong>(i)</strong>&nbsp; Complete the following logic diagram for <strong>P = (A OR B) AND NOT C</strong> by drawing one logic gate in each box.</p>
+<svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;border:0;">
+  <text x="8" y="55" font-size="14" font-family="Arial">A</text>
+  <line x1="22" y1="50" x2="120" y2="50" stroke="#000"/>
+  <text x="8" y="115" font-size="14" font-family="Arial">B</text>
+  <line x1="22" y1="110" x2="120" y2="110" stroke="#000"/>
+  <text x="8" y="205" font-size="14" font-family="Arial">C</text>
+  <line x1="22" y1="200" x2="120" y2="200" stroke="#000"/>
+  <rect x="120" y="35" width="120" height="90" fill="none" stroke="#666" stroke-dasharray="5 4"/>
+  <rect x="120" y="160" width="120" height="80" fill="none" stroke="#666" stroke-dasharray="5 4"/>
+  <line x1="240" y1="80" x2="330" y2="80" stroke="#000"/>
+  <line x1="240" y1="200" x2="330" y2="200" stroke="#000"/>
+  <line x1="330" y1="80" x2="330" y2="110" stroke="#000"/>
+  <line x1="330" y1="200" x2="330" y2="150" stroke="#000"/>
+  <line x1="330" y1="110" x2="360" y2="110" stroke="#000"/>
+  <line x1="330" y1="150" x2="360" y2="150" stroke="#000"/>
+  <rect x="360" y="95" width="120" height="70" fill="none" stroke="#666" stroke-dasharray="5 4"/>
+  <line x1="480" y1="130" x2="540" y2="130" stroke="#000"/>
+  <text x="544" y="135" font-size="14" font-family="Arial">P</text>
+</svg>
+<p class="markrow">[3]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; A truth table can be produced for this logic circuit.</p>
+<p>Describe the purpose of a truth table.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[2]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(iii)</strong>&nbsp; State how many rows (excluding any headings) would be required in a truth table for the logic expression:</p>
+<p style="text-align:center;"><strong>P = (A OR B) AND NOT C</strong></p>
+<div class="ans"><div class="aline" style="width:60%;display:inline-block;"></div><span style="float:right;font-weight:bold;">[1]</span></div>
+</div>
+
+<div class="qi" style="clear:both;">
+<p><strong>(b)</strong>&nbsp; The <span class="changed">bowling alley</span> needs an algorithm designing to help employees work out if a customer can have a <span class="changed">half-price game</span> or not. It should:</p>
+<ul>
+<li>input required data</li>
+<li>decide if the customer is entitled to a discount</li>
+<li>output the result of the calculation.</li>
+</ul>
+<p>Design the algorithm using a flowchart.</p>
+<div class="answerbox tall"></div>
+<p class="markrow">[5]</p>
+</div>
+
+<div class="qi">
+<p><strong>(c)</strong>&nbsp; The <span class="changed">bowling alley</span> adds a <span class="changed">surcharge</span> to the cost of a <span class="changed">game</span> depending on the <span class="changed">number of players</span> on a lane. If there are <span class="changed">more than four players</span>, <span class="changed">6%</span> is added to the total cost of each <span class="changed">game</span>.</p>
+<p>Customers can also choose to leave a <span class="changed">gratuity</span>, this is optional and the customer can choose between a percentage of the cost, or a set amount.</p>
+<p>Identify all the additional inputs that will be required for this change to the algorithm.</p>
+<div class="ans"><div class="aline"></div><div class="aline"><span class="endmark">[2]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(d)</strong>&nbsp; Each member of staff that works at the <span class="changed">bowling alley</span> is given a <span class="changed">Staff ID</span>. This is calculated using the following algorithm.</p>
+<pre class="changed">01 surname = input("Enter surname")
+02 year = input("Enter starting year")
+03 staffID = surname + str(year)
+04 while staffID.length &lt; 10
+05   staffID = staffID + "z"
+06 endwhile
+07 print("ID " + staffID)</pre>
+
+<div class="qi">
+<p><strong>(i)</strong>&nbsp; Define the term <span class="changed">casting</span> and give the line number where casting has been used in the algorithm.</p>
+<p>Definition <span class="blank" style="min-width:300px;">&nbsp;</span></p>
+<div class="aline"></div>
+<p>Line number <span class="blank-sm">&nbsp;</span></p>
+<p class="markrow">[2]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; Complete the following trace table for the given algorithm when the surname <span class="changed">"Khan"</span> and the year <span class="changed">2023</span> are entered.</p>
+<p>You may not need to use all rows in the table.</p>
+<table class="data" style="margin-left:16px;">
+<tr><th>Line number</th><th><code class="inline-code">surname</code></th><th><code class="inline-code">year</code></th><th><code class="inline-code">staffID</code></th><th>Output</th></tr>
+<tr><td>01</td><td>Khan</td><td></td><td></td><td></td></tr>
+<tr><td>02</td><td></td><td>2023</td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+<tr style="height:26px;"><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="markrow">[4]</p>
+</div>
+</div>
+</div>
+
+<!-- ===================================================== Q3 -->
+<div class="qn pb">
+<p><strong>3 (a)</strong>&nbsp; A program stores the following list of positive and negative numbers. The numbers need sorting into ascending order using a merge sort.</p>
+<table class="data" style="margin-left:16px;">
+<tr><td>38</td><td>-14</td><td>27</td><td>-6</td><td>51</td><td>0</td><td>-42</td><td>19</td></tr>
+</table>
+<p>The first step is to divide the list into individual lists of one number each. This has been done for you.</p>
+<div class="splitlist">
+<span class="cell">38</span><span class="cell">-14</span><span class="cell">27</span><span class="cell">-6</span><span class="cell">51</span><span class="cell">0</span><span class="cell">-42</span><span class="cell">19</span>
+</div>
+<p>Complete the merge sort of the data by showing each step of the process.</p>
+<div class="answerbox"></div>
+<p class="markrow">[3]</p>
+
+<div class="qi">
+<p><strong>(b)</strong>&nbsp; Once a list of numbers are in order, a binary search can be run on the data.</p>
+<p>Describe the steps a binary search will follow to look for a number in a sorted list.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"></div><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[4]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(c)</strong>&nbsp; A linear search could be used instead of a binary search.</p>
+<p>Describe the steps a linear search would follow when searching for a number that is not in the given list.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[2]</span></div></div>
+</div>
+</div>
+
+<!-- ===================================================== Q4 -->
+<div class="qn pb">
+<p><strong>4 (a)</strong>&nbsp; <span class="changed">Priya</span> is writing a program to add up some numbers. Her first attempt at the program is shown.</p>
+<pre class="changed">p = input("Enter a number")
+q = input("Enter a number")
+r = input("Enter a number")
+s = input("Enter a number")
+t = input("Enter a number")
+u = (p + q + r + s + t)
+print(u)</pre>
+<p>Give two ways that the maintainability of this program could be improved.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[2]</span></div></div>
+
+<div class="qi">
+<p><strong>(b) (i)</strong>&nbsp; <span class="changed">Priya's</span> program uses the addition ( + ) arithmetic operator. This adds together two numbers.</p>
+<p>State the purpose of each of the arithmetic operators in the table.</p>
+<table class="data" style="margin-left:16px;">
+<tr><th>Arithmetic operator</th><th style="width:280px;text-align:left;">Purpose</th></tr>
+<tr><td><code class="inline-code">*</code></td><td></td></tr>
+<tr><td><code class="inline-code">/</code></td><td></td></tr>
+</table>
+<p class="markrow">[2]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; Complete the description of programming languages and translators by writing the correct term from the box in each space.</p>
+<div class="wordbank changed">continues&nbsp;&nbsp;&nbsp;crashes&nbsp;&nbsp;&nbsp;debugging&nbsp;&nbsp;&nbsp;error&nbsp;&nbsp;&nbsp;executable<br>high-level&nbsp;&nbsp;&nbsp;interpreter&nbsp;&nbsp;&nbsp;language&nbsp;&nbsp;&nbsp;low-level&nbsp;&nbsp;&nbsp;many<br>no&nbsp;&nbsp;&nbsp;one&nbsp;&nbsp;&nbsp;stops&nbsp;&nbsp;&nbsp;with&nbsp;&nbsp;&nbsp;without</div>
+<p><span class="changed">Priya</span> writes her program in a <span class="blank">&nbsp;</span> language. Before it can be executed, this must be translated into assembly code or machine code. This is done using a translator.</p>
+<p>One kind of translator is an interpreter. It translates a single line of code and then runs it, before moving on to the next line. When it meets an error it <span class="blank">&nbsp;</span>, and once the error is fixed it carries on running from the same position. This kind of translator is helpful when debugging code.</p>
+<p>A second kind of translator is a compiler. This translates all of the code at once and produces an error report. The program will not run until there are <span class="blank">&nbsp;</span> errors.</p>
+<p>The <span class="blank">&nbsp;</span> file that is produced can be run <span class="blank">&nbsp;</span> the compiler.</p>
+<p class="markrow">[5]</p>
+</div>
+
+<div class="qi">
+<p><strong>(c)</strong>&nbsp; <span class="changed">Priya</span> decides to improve her program. She wants to be able to input how many numbers to add together each time the algorithm runs, and also wants it to calculate and display the average of these numbers.</p>
+<p>Write an algorithm to:</p>
+<ul>
+<li>ask the user to input the quantity of numbers they want to enter and read this value as input</li>
+<li>repeatedly take a number as input, until the quantity of numbers the user input has been entered</li>
+<li>calculate and output the total of these numbers</li>
+<li>calculate and output the average of these numbers.</li>
+</ul>
+<div class="answerbox"></div>
+<p class="markrow">[6]</p>
+</div>
+</div>
+
+<!-- ===================================================== Q5 -->
+<div class="qn pb">
+<p><strong>5 (a)</strong>&nbsp; Customers at a <span class="changed">caravan park</span> can stay between 1 and 5 (inclusive) nights and can choose between a <span class="changed">standard pitch</span> or a <span class="changed">premium pitch</span>.</p>
+<p>A typical booking record is shown in the table:</p>
+<table class="data" style="margin-left:16px;">
+<tr><td style="text-align:left;"><code class="inline-code">firstName</code></td><td style="text-align:left;"><span class="changed">Maya</span></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code">surname</code></td><td style="text-align:left;"><span class="changed">Okonkwo-Bell</span></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code">nights</code></td><td style="text-align:left;">2</td></tr>
+<tr><td style="text-align:left;"><code class="inline-code">pitch</code></td><td style="text-align:left;"><span class="changed">Premium</span></td></tr>
+<tr><td style="text-align:left;"><code class="inline-code">stayComplete</code></td><td style="text-align:left;">False</td></tr>
+</table>
+
+<div class="qi">
+<p><strong>(i)</strong>&nbsp; State the most appropriate data type for the following fields:</p>
+<p>Nights <span class="blank">&nbsp;</span></p>
+<p><span class="changed">Pitch</span> <span class="blank">&nbsp;</span></p>
+<p class="markrow">[2]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; Give the name of one field that could be stored as a Boolean data type.</p>
+<div class="ans"><div class="aline"><span class="endmark">[1]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(iii)</strong>&nbsp; Booking records are stored in a database table called <code class="inline-code changed">TblPitchBookings</code>.</p>
+<p>The following SQL statement is written to display all customer bookings that stay more than one night.</p>
+<pre class="changed">SELECT ALL
+FROM TblPitchBookings
+IF Nights &lt; 1</pre>
+<p>The SQL statement is incorrect. Rewrite the SQL statement so that it is correct.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[4]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(b) (i)</strong>&nbsp; When a new booking is recorded, the details are entered into a program to validate the values. The following criteria are checked:</p>
+<ul>
+<li><code class="inline-code">firstName</code> and <code class="inline-code">surname</code> are not empty</li>
+<li><code class="inline-code changed">pitch</code> is either <span class="changed">"standard"</span> or "premium"</li>
+<li><code class="inline-code">nights</code> is between 1 and 5 (inclusive).</li>
+</ul>
+<p>If any invalid data is found "NOT ALLOWED" is displayed. If all data is valid "ALLOWED" is displayed.</p>
+<p>Complete the following program to validate the inputs. You must use either OCR Exam Reference Language, or a high-level programming language that you have studied.</p>
+<pre class="changed">firstName = input("Enter a first name")
+surname = input("Enter a surname")
+pitch = input("Enter standard or premium")
+nights = input("Enter between 1 and 5 nights")
+stayComplete = False</pre>
+<div class="answerbox"></div>
+<p class="markrow">[5]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; Complete the following test plan to check whether the number of nights is validated correctly.</p>
+<table class="data" style="margin-left:16px;">
+<tr><th style="width:150px;">Test data<br>(number of nights)</th><th>Type of test</th><th>Expected output</th></tr>
+<tr><td>2</td><td></td><td>ALLOWED</td></tr>
+<tr><td></td><td>Boundary</td><td>ALLOWED</td></tr>
+<tr><td></td><td>Erroneous / Invalid</td><td>NOT ALLOWED</td></tr>
+</table>
+<p class="markrow">[3]</p>
+</div>
+
+<div class="qi">
+<p><strong>(c) (i)</strong>&nbsp; A <span class="changed">standard pitch</span> costs <span class="changed">&pound;35</span> each night. A <span class="changed">premium pitch</span> costs <span class="changed">&pound;55</span> each night.</p>
+<p>Create a function, <code class="inline-code">newPrice()</code>, that takes the number of nights and the type of <span class="changed">pitch</span> as parameters, calculates and returns the price to pay. You do not have to validate these parameters.</p>
+<div class="answerbox" style="min-height:200px;"></div>
+<p class="markrow">[4]</p>
+</div>
+
+<div class="qi">
+<p><strong>(ii)</strong>&nbsp; Write program code, that uses <code class="inline-code">newPrice()</code>, to output the price of staying in a <span class="changed">premium pitch</span> for 5 nights.</p>
+<div class="answerbox" style="min-height:150px;"></div>
+<p class="markrow">[3]</p>
+</div>
+
+<div class="qi">
+<p><strong>(d)</strong>&nbsp; A <span class="changed">caravan park</span> has nine <span class="changed">pitches</span> that are numbered from <span class="changed">pitch</span> 0 to <span class="changed">pitch</span> 8.</p>
+<p>The number of people currently staying on each <span class="changed">pitch</span> is stored in an array with the identifier <code class="inline-code changed">pitch</code>. The index of <code class="inline-code changed">pitch</code> represents the <span class="changed">pitch</span> number.</p>
+<table class="data" style="margin-left:16px;">
+<tr><td style="background:#ddd;">Index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+<tr><td style="background:#ddd;">Data</td><td>3</td><td>0</td><td>2</td><td>1</td><td>4</td><td>0</td><td>2</td><td>1</td><td>2</td></tr>
+</table>
+<p>The following program counts how many people are currently staying at the <span class="changed">caravan park</span>.</p>
+<pre class="changed">for count = 1 to 8
+    total = 0
+    total = total + pitch[count]
+next count
+print(total)</pre>
+<p>When tested, the program is found to contain two logic errors.</p>
+<p>Describe how the program can be refined to remove these logic errors.</p>
+<div class="ans"><div class="aline"></div><div class="aline"></div><div class="aline"><span class="endmark">[2]</span></div></div>
+</div>
+
+<div class="qi">
+<p><strong>(e)</strong>&nbsp; A <span class="changed">bike hire company charges &pound;6 per hour</span>. If the <span class="changed">bike is electric</span>, this price is halved to <span class="changed">&pound;3 per hour</span>.</p>
+<p>Write an algorithm to:</p>
+<ul>
+<li>take as input the number of hours the <span class="changed">bike</span> has been hired and whether the <span class="changed">bike is electric</span> or not</li>
+<li>calculate and output the total price</li>
+<li>repeat continually until the user enters 0 hours.</li>
+</ul>
+<p>You must use either OCR Exam Reference Language, or a high-level programming language that you have studied.</p>
+<div class="answerbox"></div>
+<p class="markrow">[6]</p>
+</div>
+</div>
+
+<p style="text-align:center;font-weight:bold;">END OF QUESTION PAPER</p>
+
+</div>
+</body>
+</html>

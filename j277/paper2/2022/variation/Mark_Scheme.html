@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>J277/02 Practice Variation - Mark Scheme</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;font-size:11pt;color:#000;margin:0;background:#fff;}
+.page{max-width:850px;margin:0 auto;padding:16mm 16mm;}
+.ms-title{text-align:center;font-weight:bold;font-size:13pt;margin:0 0 6px;}
+table.ms{width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:22px;}
+table.ms td,table.ms th{border:1px solid #000;padding:6px 7px;vertical-align:top;}
+table.ms th{background:#fff;font-weight:bold;text-align:center;}
+table.ms td.q{width:22px;text-align:center;}
+table.ms td.mk{width:46px;text-align:center;}
+table.ms td.ans-col{width:42%;}
+table.ms td.guid-col{width:40%;}
+.red{color:#c00;}
+.totalrow td{background:#d9d9d9;font-weight:bold;}
+.verify{background:#fffde7;border:1px solid #e0b800;padding:5px 8px;font-size:9pt;margin-top:6px;}
+ul{margin:4px 0;padding-left:18px;}
+code{font-family:'Courier New',monospace;font-size:9.5pt;background:#f5f5f5;padding:1px 3px;}
+pre{font-family:'Courier New',monospace;font-size:9.5pt;background:#f5f5f5;padding:6px;border:1px solid #bbb;white-space:pre;margin:6px 0;}
+@media print{.page{padding:10mm 12mm;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="ms-title">Mark Scheme</p>
+<p style="font-size:9pt;margin:0 0 14px;">GCSE J277/02 Practice Variation. Yellow boxes confirm re-computed answers. Guidance notes in red follow OCR convention. Mark allocations and assessment objectives are identical to the original paper.</p>
+
+<!-- ====================== Q1 ====================== -->
+<table class="ms">
+<tr><th colspan="3">Question</th><th>Answer/Indicative content</th><th>Marks</th><th>Guidance</th></tr>
+<tr>
+<td class="q">1</td><td class="q">a</td><td class="q"></td>
+<td class="ans-col">1 mark per correct row:
+<table style="border-collapse:collapse;width:100%;margin-top:4px;">
+<tr><td style="border:1px solid #000;padding:3px;">for j loop</td><td style="border:1px solid #000;padding:3px;text-align:center;">Iteration</td></tr>
+<tr><td style="border:1px solid #000;padding:3px;">while lives != 0</td><td style="border:1px solid #000;padding:3px;text-align:center;">Iteration</td></tr>
+<tr><td style="border:1px solid #000;padding:3px;">if wrongAnswer() then</td><td style="border:1px solid #000;padding:3px;text-align:center;">Selection</td></tr>
+<tr><td style="border:1px solid #000;padding:3px;">switch level</td><td style="border:1px solid #000;padding:3px;text-align:center;">Selection</td></tr>
+</table></td>
+<td class="mk">4<br>(AO2 1b)</td>
+<td class="guid-col"><span class="red">No mark given if both boxes in a row ticked. Accept any response (ticks, crosses, etc) that clearly indicates the candidate's choice.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">b</td><td class="q"></td>
+<td class="ans-col"><code>points = points + 1</code> // <code>points += 1</code> // <code>points++</code></td>
+<td class="mk">1<br>(AO3 2b)</td>
+<td class="guid-col"><span class="red">Allow other logically correct answers that result in points increasing by one and being overwritten. Do not accept <code>points + 1</code> / <code>points = +1</code>. Accept valid structured English (e.g. "points becomes points plus one"). Ignore superfluous code that does not affect the outcome.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">c</td><td class="q"></td>
+<td class="ans-col">Decomposition<br>Abstraction</td>
+<td class="mk">2<br>(AO1 1a)</td>
+<td class="guid-col"><span class="red">Correct answer only. Ignore spelling errors. First definition is decomposition, second is abstraction.</span></td>
+</tr>
+<tr class="totalrow"><td colspan="3"></td><td>Total</td><td class="mk">7</td><td></td></tr>
+</table>
+
+<!-- ====================== Q2 ====================== -->
+<table class="ms">
+<tr><th colspan="3">Question</th><th>Answer/Indicative content</th><th>Marks</th><th>Guidance</th></tr>
+<tr>
+<td class="q">2</td><td class="q">a</td><td class="q">i</td>
+<td class="ans-col">
+<ul>
+<li>A OR B (OR gate)</li>
+<li>NOT C (NOT gate)</li>
+<li>AND gate</li>
+</ul></td>
+<td class="mk">3<br>(AO2 1b)</td>
+<td class="guid-col"><span class="red">1 mark per gate. Correct symbols must be used. NOT gate must have circle for inversion; OR and AND must not have a circle. Mark the shape of each gate, not any name written. Penalise incorrect inputs/outputs once then follow through.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">
+<ul>
+<li>To show all possible inputs (to the logic circuit)...</li>
+<li>...and the associated/dependent output (for each input)</li>
+</ul></td>
+<td class="mk">2<br>(AO1 1b)</td>
+<td class="guid-col"><span class="red">For 2nd BP, must be clear the output is linked to the input values given. "All possible combinations of inputs and outputs" gains the first mark only. "The output for each possible input" gains both marks.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">iii</td>
+<td class="ans-col">8 // eight</td>
+<td class="mk">1<br>(AO2 1a)</td>
+<td class="guid-col"><span class="red">Accept other answers that equate to 8 (e.g. 2&sup3;).</span>
+<div class="verify">3 inputs &rarr; 2&sup3; = 8 rows. Unchanged from original (input count fixed at 3).</div></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">b</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>Start and end/stop with all boxes connected, no boxes that do not lead to another box</li>
+<li>Input three variables using parallelogram shape</li>
+<li>Checks all three criteria (day, student, membership card) using diamond shape(s) with two lines from each</li>
+<li>...Outputs "full price" with correct conditions using parallelogram shape</li>
+<li>...Outputs "half price" with correct conditions using parallelogram shape</li>
+</ul>
+<p style="margin-top:6px;">Correct outputs:</p>
+<table style="border-collapse:collapse;font-size:9pt;">
+<tr><td style="border:1px solid #000;padding:2px 5px;">Not Friday AND (student OR membership card)</td><td style="border:1px solid #000;padding:2px 5px;">Half price</td></tr>
+<tr><td style="border:1px solid #000;padding:2px 5px;">Friday OR (not a student AND no membership card)</td><td style="border:1px solid #000;padding:2px 5px;">Full price</td></tr>
+</table></td>
+<td class="mk">5<br>(AO3 2a)</td>
+<td class="guid-col"><span class="red">Question asks for a flowchart. Pseudocode/high level language not acceptable (NAQ). BP4 and BP5 only awarded if all decisions ensure correct output and it is clear what the decisions are. Follow through for incorrect shapes/no inputs as long as decisions are logically correct. Must attempt all three decisions. Allow calculation of half/full price instead of message but it must still be output. Penalise lack of parallelogram for input/output once then follow through.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">c</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>Number of players (on the lane) // whether there are more than four players or not</li>
+<li>Choice between percentage and value // actual value of both percentage and value</li>
+</ul></td>
+<td class="mk">2<br>(AO3 2a)</td>
+<td class="guid-col"><span class="red">Ignore additional sensible inputs (e.g. cost of the game). Accept inputs as pseudocode/high level language. Max 1 if other irrelevant inputs given. "Whether to leave a gratuity or not" or "amount of gratuity" alone is not enough for BP2; must address both percentage and value.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">d</td><td class="q">i</td>
+<td class="ans-col">Convert/change one data type to another<br><br>Line 03 // 3 // three</td>
+<td class="mk">2<br>(AO1 1b)<br>(AO2 2b)</td>
+<td class="guid-col"><span class="red">Do not accept "change to string" - that is the use in this example, not a definition.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">
+<ul>
+<li>Khan2023 as staffID on line 03</li>
+<li>Khan2023z as staffID on line 05</li>
+<li>Khan2023zz as staffID on line 05</li>
+<li>ID Khan2023zz output on line 07 as first and only output</li>
+</ul>
+<table style="border-collapse:collapse;font-size:9pt;margin-top:4px;">
+<tr><th style="border:1px solid #000;padding:2px 4px;">Line</th><th style="border:1px solid #000;padding:2px 4px;">surname</th><th style="border:1px solid #000;padding:2px 4px;">year</th><th style="border:1px solid #000;padding:2px 4px;">staffID</th><th style="border:1px solid #000;padding:2px 4px;">Output</th></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">01</td><td style="border:1px solid #000;padding:2px 4px;">Khan</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">02</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;">2023</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">03</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;">Khan2023</td><td style="border:1px solid #000;padding:2px 4px;"></td></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">05</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;">Khan2023z</td><td style="border:1px solid #000;padding:2px 4px;"></td></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">05</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;">Khan2023zz</td><td style="border:1px solid #000;padding:2px 4px;"></td></tr>
+<tr><td style="border:1px solid #000;padding:2px 4px;">07</td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;"></td><td style="border:1px solid #000;padding:2px 4px;">ID Khan2023zz</td></tr>
+</table></td>
+<td class="mk">4<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">Max 2 if incorrect order. Ignore misspelling of Khan. Penalise lack of / errors with line numbers once then follow through. staffID has no space; output has one space only (between ID and Khan2023zz). Penalise spaces once then follow through.</span>
+<div class="verify">Khan(4) + 2023(4) = Khan2023 (8 chars). Loop pads with "z" while length &lt; 10: &rarr; Khan2023z (9) &rarr; Khan2023zz (10), stop. Output: ID Khan2023zz. Two iterations confirmed, matching original difficulty.</div></td>
+</tr>
+<tr class="totalrow"><td colspan="3"></td><td>Total</td><td class="mk">19</td><td></td></tr>
+</table>
+
+<!-- ====================== Q3 ====================== -->
+<table class="ms">
+<tr><th colspan="3">Question</th><th>Answer/Indicative content</th><th>Marks</th><th>Guidance</th></tr>
+<tr>
+<td class="q">3</td><td class="q">a</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>Merge into correct sorted lists of size 2: (-14 38 / -6 27 / 0 51 / -42 19)</li>
+<li>Merge into correct sorted lists of size 4: (-14 -6 27 38 / -42 0 19 51)...</li>
+<li>...Merge into correct sorted list of size 8: (-42 -14 -6 0 19 27 38 51)</li>
+</ul></td>
+<td class="mk">3<br>(AO2 1b)</td>
+<td class="guid-col"><span class="red">Do not credit BP3 simply for a sorted list. Groups must clearly be the correct size. Do not allow answers that show lists merged and then sorted in place. The process of merging produces the sorted list.</span>
+<div class="verify">[38,-14,27,-6,51,0,-42,19] &rarr; size2 (-14 38)(-6 27)(0 51)(-42 19) &rarr; size4 (-14 -6 27 38)(-42 0 19 51) &rarr; size8 (-42 -14 -6 0 19 27 38 51). Verified equal to sorted(list).</div></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">b</td><td class="q"></td>
+<td class="ans-col">Any four for 1 mark each:
+<ul>
+<li>Select / choose / pick the middle number (or left/right of middle as even number) and...</li>
+<li>...check if the selected number is equal to / matches the target number</li>
+<li>...if the searched number is larger, discard the left half // if smaller, discard the right half</li>
+<li>Repeat until the number is found...</li>
+<li>...or the remaining list is of size 1 / 0 (number not found)</li>
+</ul></td>
+<td class="mk">4<br>(AO1 1b)</td>
+<td class="guid-col"><span class="red">Do not allow "split the list in half" on its own as the first step. BP1 and BP2 can be in one step. For BP3 accept focussing on the correct half. Repeat must be in the context of a binary search; allow correct reference to recursion. "Until number is not in the list" is not enough for final BP.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">c</td><td class="q"></td>
+<td class="ans-col">1 mark each:
+<ul>
+<li>Starting with the first value</li>
+<li>Checking all values in order</li>
+</ul></td>
+<td class="mk">2<br>(AO1 1b)</td>
+<td class="guid-col"><span class="red">2nd BP must cover checking all values AND in order. "Checks each value" / "one by one" alone is not enough. Do not accept "repeat until value found" (the number is not in the list). "Checks each value from beginning to end" implies order so gets both marks.</span></td>
+</tr>
+<tr class="totalrow"><td colspan="3"></td><td>Total</td><td class="mk">9</td><td></td></tr>
+</table>
+
+<!-- ====================== Q4 ====================== -->
+<table class="ms">
+<tr><th colspan="3">Question</th><th>Answer/Indicative content</th><th>Marks</th><th>Guidance</th></tr>
+<tr>
+<td class="q">4</td><td class="q">a</td><td class="q"></td>
+<td class="ans-col">Any two for one mark each:
+<ul>
+<li>Add comments</li>
+<li>Name variables sensibly</li>
+<li>Put into subroutine / procedure / function</li>
+<li>Use loop / iteration</li>
+</ul></td>
+<td class="mk">2<br>(AO2 1b)</td>
+<td class="guid-col"><span class="red">Do not accept indentation (no code to sensibly indent here). "Use a subroutine" is not enough; must be clear that existing code will be put into a new subroutine.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">b</td><td class="q">i</td>
+<td class="ans-col">Multiplication<br>Division</td>
+<td class="mk">2<br>(AO1 1a)</td>
+<td class="guid-col"><span class="red">Accept other correct answers meaning the same. Accept floor / integer division // division with no remainder.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">In order:
+<ul>
+<li>high-level</li>
+<li>stops // crashes</li>
+<li>no</li>
+<li>executable</li>
+<li>without</li>
+</ul></td>
+<td class="mk">5<br>(AO1 1b)<br>(AO2 1b)</td>
+<td class="guid-col"><span class="red">Ignore spelling errors. One mark per correct gap in the order shown.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">c</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>Input and store/use value with message</li>
+<li>Attempt at repeating...</li>
+<li>...correctly repeats the number of times given as input</li>
+<li>...correctly take number as input within loop and calculate total of these numbers</li>
+<li>...correctly calculate an average (total / count)</li>
+<li>Output both total and average</li>
+</ul>
+<pre>count = input("Enter how many numbers")
+total = 0
+for x = 1 to count
+   temp = input("Enter a number")
+   total = total + temp
+next x
+print(total)
+print(total / count)</pre></td>
+<td class="mk">6<br>(AO3 2b)<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">If flowchart used, correct shapes needed. Allow tolerance of 1 with number of loops for BP3 with for loops. BP1 requires input with a message and the value stored/used. BP3, 4, 5 must be logically correct. Ignore non-initialisation of total. BP5 and BP6 can be follow through.</span></td>
+</tr>
+<tr class="totalrow"><td colspan="3"></td><td>Total</td><td class="mk">15</td><td></td></tr>
+</table>
+
+<!-- ====================== Q5 ====================== -->
+<table class="ms">
+<tr><th colspan="3">Question</th><th>Answer/Indicative content</th><th>Marks</th><th>Guidance</th></tr>
+<tr>
+<td class="q">5</td><td class="q">a</td><td class="q">i</td>
+<td class="ans-col">Integer<br>String</td>
+<td class="mk">2<br>(AO3 2a)</td>
+<td class="guid-col"><span class="red">Accept other valid data types from high-level languages (e.g. byte, short for integers). Do not accept descriptions (e.g. "whole number", "text"). Do not accept "character(s)" for string.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">stayComplete</td>
+<td class="mk">1<br>(AO3 2a)</td>
+<td class="guid-col"><span class="red">Ignore spaces or misspelling as long as recognisable.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">iii</td>
+<td class="ans-col">
+<pre>SELECT FirstName, Surname, Nights, Pitch, StayComplete
+FROM TblPitchBookings
+WHERE Nights &gt; 1</pre>
+// <code>SELECT *</code> for the field list<br>// <code>Nights &gt;= 2</code> // <code>Nights BETWEEN 2 AND 5</code></td>
+<td class="mk">4<br>(AO3 1)<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">Order of fields for BP1 not important but must show all fields separated by commas. Ignore capitalisation and spacing; spelling must be correct. FROM clause is correct in the original and needs no change. IF must become WHERE. Comparison must be Nights &gt; 1. Max 3 if in wrong order or if any extra invalid code is included.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">b</td><td class="q">i</td>
+<td class="ans-col">
+<ul>
+<li>Checks that both firstName and surname are not empty...</li>
+<li>Checks that pitch is either "standard" or "premium"...</li>
+<li>Checks that nights is between 1 and 5 (inclusive)...</li>
+<li>...Outputs "NOT ALLOWED" if any of the 3 checks are invalid (must check all three)</li>
+<li>...Outputs "ALLOWED" only if all three checks are valid (must check all three)</li>
+</ul>
+<pre>valid = True
+if firstName == "" or surname == "" then
+   valid = False
+endif
+if pitch != "standard" and pitch != "premium" then
+   valid = False
+endif
+if nights &lt; 1 or nights &gt; 5 then
+   valid = False
+endif
+if valid then
+   print("ALLOWED")
+else
+   print("NOT ALLOWED")
+endif</pre></td>
+<td class="mk">5<br>(AO3 2a)</td>
+<td class="guid-col"><span class="red">Must attempt all three checks to give output mark(s). Check for nights must check both upper and lower limits. Iteration can be used as validation. Do not accept logically incorrect Boolean conditions such as <code>if firstName or surname == ""</code>. Do not accept &ge; or &le; for &gt;=, &lt;=. Pay particular attention to use of AND / OR. Checks for valid data equally acceptable, e.g. <code>if pitch == "standard" or pitch == "premium"</code>.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">
+<table style="border-collapse:collapse;font-size:9pt;">
+<tr><th style="border:1px solid #000;padding:2px 5px;">Nights</th><th style="border:1px solid #000;padding:2px 5px;">Type</th><th style="border:1px solid #000;padding:2px 5px;">Expected</th></tr>
+<tr><td style="border:1px solid #000;padding:2px 5px;">2</td><td style="border:1px solid #000;padding:2px 5px;">Normal</td><td style="border:1px solid #000;padding:2px 5px;">ALLOWED</td></tr>
+<tr><td style="border:1px solid #000;padding:2px 5px;">1 // 5</td><td style="border:1px solid #000;padding:2px 5px;">Boundary</td><td style="border:1px solid #000;padding:2px 5px;">ALLOWED</td></tr>
+<tr><td style="border:1px solid #000;padding:2px 5px;">e.g. 7</td><td style="border:1px solid #000;padding:2px 5px;">Erroneous/Invalid</td><td style="border:1px solid #000;padding:2px 5px;">NOT ALLOWED</td></tr>
+</table></td>
+<td class="mk">3<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">Allow other descriptions that mean normal (e.g. valid / typical / acceptable). Boundary must be 1 or 5 (not 0 or 6, as those say not allowed). Erroneous can be any numeric value except 1 to 5, or any non-numeric input.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">c</td><td class="q">i</td>
+<td class="ans-col">
+<ul>
+<li>Function header for newPrice...</li>
+<li>...taking (at least) two parameters</li>
+<li>...correctly calculates price based on parameters within function</li>
+<li>...returns this calculated price</li>
+</ul>
+<pre>function newPrice(nights, pitch)
+   if pitch == "standard" then
+      price = 35 * nights
+   elseif pitch == "premium" then
+      price = 55 * nights
+   endif
+   return price
+endfunction</pre></td>
+<td class="mk">4<br>(AO3 2b)</td>
+<td class="guid-col"><span class="red">BP1 must be clear a new function is being defined (e.g. function / def keyword). Allow follow through for later marks if not present. Ignore additional parameters. If inputs used instead of parameters, follow through for BP3. Attempt at calculation needed for BP4. Must return (not output) the value.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q"></td><td class="q">ii</td>
+<td class="ans-col">
+<ul>
+<li>Call function newPrice...</li>
+<li>...with ("premium", 5) as parameters</li>
+<li>...output returned value</li>
+</ul>
+<pre>print(newPrice("premium", 5))</pre></td>
+<td class="mk">3<br>(AO3 2b)</td>
+<td class="guid-col"><span class="red">Order of parameters not important. "premium" must use string delimiters (e.g. quotes). Do not allow function definitions for BP1. Ignore capitalisation of newPrice. Candidate may store the returned value in a variable and then print it.</span>
+<div class="verify">newPrice("premium", 5) = 55 &times; 5 = &pound;275.</div></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">d</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>For loop changed to include index 0 (e.g. 0 to 8)</li>
+<li><code>total = 0</code> moved to before the loop starts / removed</li>
+</ul></td>
+<td class="mk">2<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">Allow loop changed to 0 to 8 or 0 to 9 (Python). Do not accept simply "move total outside loop" (could be moved after loop, still an error) or "move to top of loop". Accept corrected code shown. Accept reference to count variable limits for BP1.</span></td>
+</tr>
+<tr>
+<td class="q"></td><td class="q">e</td><td class="q"></td>
+<td class="ans-col">
+<ul>
+<li>Inputs hours AND electric (two separate inputs), storing or using these</li>
+<li>Checks if the bike is electric (IF/select statement)...</li>
+<li>...correctly calculates and outputs price (hours * 3) for electric</li>
+<li>...correctly calculates and outputs price (hours * 6) for non-electric</li>
+<li>Attempt at repetition of BP1 to BP4...</li>
+<li>...until 0 hours entered</li>
+</ul>
+<pre>while hours != 0
+   hours = input("Enter hours")
+   electric = input("Enter Y for electric or N")
+   if electric == "Y" then
+      price = hours * 3
+   elseif electric == "N" then
+      price = hours * 6
+   endif
+   print(price)
+endwhile</pre></td>
+<td class="mk">6<br>(AO3 2c)</td>
+<td class="guid-col"><span class="red">Initialisation of price and hours not necessary, but if present hours must be non-zero for BP6. BP5 must include all points attempted. BP6 can be follow through even if loop is in the wrong place. BP6 could be achieved as repeated function calls / recursion. Do not accept <code>while hours &gt; 0</code> (could be -1). Do not penalise answers where 0 is output when loop exits.</span>
+<div class="verify">Electric: 3 hrs &rarr; 3&times;3 = &pound;9. Non-electric: 2 hrs &rarr; 2&times;6 = &pound;12. Halving preserved (6 to 3), same logic as original (4 to 2).</div></td>
+</tr>
+<tr class="totalrow"><td colspan="3"></td><td>Total</td><td class="mk">30</td><td></td></tr>
+</table>
+
+<p style="text-align:center;font-weight:bold;font-size:11pt;">Paper total: 80 marks</p>
+
+</div>
+</body>
+</html>

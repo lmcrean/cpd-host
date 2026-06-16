@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>J277/02 Practice Variation - Quality Assurance Notes</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;font-size:10.5pt;color:#000;margin:0;background:#fff;}
+.page{max-width:960px;margin:0 auto;padding:16mm 16mm;}
+h1{font-size:14pt;margin:0 0 4px;}
+h2{font-size:11.5pt;margin:20px 0 8px;border-bottom:2px solid #000;padding-bottom:3px;}
+p{margin:5px 0;}
+table.map{border-collapse:collapse;font-size:9.5pt;width:100%;margin:8px 0;}
+table.map td,table.map th{border:1px solid #000;padding:4px 7px;vertical-align:top;}
+table.map th{background:#ddd;text-align:left;}
+table.map td.q{white-space:nowrap;width:50px;font-weight:bold;}
+table.map td.topic{width:150px;}
+.ok{background:#e8f5e9;}
+.warn{background:#fff8e1;}
+.info{background:#e3f2fd;}
+.badge{display:inline-block;font-size:8.5pt;font-weight:bold;padding:1px 6px;border:1px solid #000;border-radius:3px;margin-right:4px;background:#fff;}
+.verify{background:#fffde7;border:1px solid #e0b800;padding:6px 9px;font-size:9.5pt;margin:6px 0;}
+code{font-family:'Courier New',monospace;font-size:9.5pt;background:#f5f5f5;padding:1px 3px;}
+table.mt{border-collapse:collapse;font-size:9.5pt;margin:8px 0;}
+table.mt td,table.mt th{border:1px solid #000;padding:4px 9px;text-align:center;}
+table.mt th{background:#ddd;}
+@media print{.page{padding:10mm 12mm;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Quality Assurance Notes (internal only)</h1>
+<p>GCSE J277/02 Practice Variation. This document is not for students. It confirms, for every sub-question, that the subject matter was re-contexted while the assessed topic, mark allocation and assessment objective stay exactly the same as the original June 2022 paper.</p>
+<p><span class="badge">STRONG</span> variation defeats search and answer reuse &nbsp; <span class="badge">PARTIAL</span> some surface unchanged, with mitigation &nbsp; <span class="badge">UNCHANGED</span> generic theory that cannot be varied without changing what is assessed.</p>
+
+<h2>1. Per sub-question mapping</h2>
+<table class="map">
+<tr><th>Question</th><th>Topic assessed (unchanged)</th><th>Original to variation</th><th>Quality notes - does it sufficiently variate?</th></tr>
+
+<tr class="ok"><td class="q">1(a)</td><td class="topic">Identifying selection vs iteration in code</td><td>Game with score/playgame/playerHit/bonus &rarr; quiz app with lives/playRound/wrongAnswer/level; <code>for i = 1 to 10</code> &rarr; <code>for j = 1 to 12</code></td><td><span class="badge">STRONG</span> Every identifier and the loop bound were renamed, so the searchable code fingerprint is gone. The four constructs (for, while, if, switch/case) and their selection/iteration classification are identical, so the topic and the answers are unchanged.</td></tr>
+
+<tr class="ok"><td class="q">1(b)</td><td class="topic">Incrementing a variable in pseudocode</td><td><code>score</code> &rarr; <code>points</code></td><td><span class="badge">STRONG</span> Variable renamed; the assessed skill (assign incremented value back to the variable) and accepted answers are identical.</td></tr>
+
+<tr class="info"><td class="q">1(c)</td><td class="topic">Naming decomposition and abstraction</td><td>Definitions reworded; answers unchanged (Decomposition, Abstraction)</td><td><span class="badge">UNCHANGED</span> Pure recall of two named techniques. The definitions were reworded to break exact-phrase search, but the assessed content cannot change without changing the question. No original-specific answer to leak.</td></tr>
+
+<tr class="ok"><td class="q">2(a)(i)</td><td class="topic">Drawing logic gates for P = (A OR B) AND NOT C</td><td>Fast food half-price meal &rarr; bowling alley half-price game; discount card &rarr; membership card; Saturday &rarr; Friday</td><td><span class="badge">STRONG</span> Scenario fully re-contexted. The Boolean expression and the three required gates (OR, NOT, AND) are deliberately kept, because that is the assessed content.</td></tr>
+
+<tr class="info"><td class="q">2(a)(ii)</td><td class="topic">Purpose of a truth table</td><td>Unchanged</td><td><span class="badge">UNCHANGED</span> Generic theory with no scenario surface. Mark points (all inputs; dependent output) are identical.</td></tr>
+
+<tr class="info"><td class="q">2(a)(iii)</td><td class="topic">Number of rows for 3 inputs</td><td>Unchanged (answer 8)</td><td><span class="badge">UNCHANGED</span> Driven solely by the fixed input count of 3, which is part of the assessed concept. Answer remains 8.</td></tr>
+
+<tr class="ok"><td class="q">2(b)</td><td class="topic">Designing a flowchart with three decisions</td><td>Half-price meal decision &rarr; half-price game decision (same three conditions: day, student, card)</td><td><span class="badge">STRONG</span> Context re-skinned to bowling. Required structure (three decisions, two outputs, correct truth combinations) is preserved exactly, so all five mark points still apply.</td></tr>
+
+<tr class="ok"><td class="q">2(c)</td><td class="topic">Identifying additional inputs for an algorithm</td><td>Restaurant service charge (5+ people, 5%) + tip &rarr; bowling surcharge (5+ players, 6%) + gratuity</td><td><span class="badge">STRONG</span> Surface values and context changed; the assessed skill (spot the two raw inputs: group size and tip type/value) and the two mark points are identical.</td></tr>
+
+<tr class="ok"><td class="q">2(d)(i)</td><td class="topic">Defining casting and finding its line</td><td>Staff ID context kept; padding character "x" &rarr; "z"; same casting on line 03</td><td><span class="badge">STRONG</span> Definition answer and line number (03) unchanged by design. Surrounding values changed enough to stop answer reuse from the original trace.</td></tr>
+
+<tr class="ok"><td class="q">2(d)(ii)</td><td class="topic">Completing a trace table (string build with iteration)</td><td>Kofi/2021/"x" &rarr; Khan/2023/"z"; output ID Kofi2021xx &rarr; ID Khan2023zz</td><td><span class="badge">STRONG</span> Inputs and pad character changed so the final string differs, but a 4-character surname plus 4-digit year was deliberately chosen to keep exactly two loop iterations, preserving the original difficulty and the 4 mark points. See verification below.</td></tr>
+
+<tr class="ok"><td class="q">3(a)</td><td class="topic">Merge sort, showing each merge step</td><td>List 45 12 -99 100 -13 0 17 -27 &rarr; 38 -14 27 -6 51 0 -42 19</td><td><span class="badge">STRONG</span> The data string is exactly what a student would search, so the whole list was replaced with new positive/negative values of the same count and magnitude. Re-derived to confirm three clean merge stages (size 2, 4, 8). See verification.</td></tr>
+
+<tr class="info"><td class="q">3(b)</td><td class="topic">Steps of a binary search</td><td>Unchanged</td><td><span class="badge">UNCHANGED</span> Algorithm description with no scenario to vary. All four mark points identical.</td></tr>
+
+<tr class="info"><td class="q">3(c)</td><td class="topic">Linear search for a value not in the list</td><td>Unchanged</td><td><span class="badge">UNCHANGED</span> Generic algorithm description. The "not in the list" framing and two mark points are preserved.</td></tr>
+
+<tr class="ok"><td class="q">4(a)</td><td class="topic">Improving maintainability of given code</td><td>Variables a-f &rarr; p-u; "Jack" &rarr; "Priya"</td><td><span class="badge">STRONG</span> The code block (the searchable artefact) was renamed throughout. The assessed point - improvements that genuinely apply to this code (comments, sensible names, subroutine, loop) - is unchanged.</td></tr>
+
+<tr class="info"><td class="q">4(b)(i)</td><td class="topic">Purpose of * and / operators</td><td>Unchanged</td><td><span class="badge">UNCHANGED</span> Recall of two operators. No surface to vary; answers (Multiplication, Division) unchanged.</td></tr>
+
+<tr class="warn"><td class="q">4(b)(ii)</td><td class="topic">Cloze: languages and translators</td><td>Passage reworded sentence by sentence; same 16-word bank and same five answers</td><td><span class="badge">PARTIAL</span> The five gap answers (high-level, stops/crashes, no, executable, without) must stay fixed because they are the assessed content. Mitigation: every sentence was rewritten so the surrounding prose is not verbatim-searchable, which is the main googleability risk for a cloze. Word bank kept identical so difficulty is unchanged.</td></tr>
+
+<tr class="ok"><td class="q">4(c)</td><td class="topic">Algorithm: count-controlled input, total and average</td><td>"add up some numbers" reworded; variable names refreshed (count/temp/total)</td><td><span class="badge">STRONG</span> The four bullet requirements are preserved (so all six mark points hold), while wording and identifiers differ enough to stop direct reuse of a model solution.</td></tr>
+
+<tr class="ok"><td class="q">5(a)(i-iii)</td><td class="topic">Data types and SQL correction</td><td>Hotel/rooms/TblBookings &rarr; caravan park/pitches/TblPitchBookings; room field &rarr; pitch field</td><td><span class="badge">STRONG</span> Table name, field name and scenario changed (the SQL fingerprint). The same three errors (SELECT ALL, IF, comparison) remain to be fixed, and Integer/String/stayComplete answers are unchanged.</td></tr>
+
+<tr class="ok"><td class="q">5(b)(i)</td><td class="topic">Validation program with three checks</td><td>room "basic"/"premium" &rarr; pitch "standard"/"premium"</td><td><span class="badge">STRONG</span> One of the two literal values changed (basic &rarr; standard), forcing edits to any copied solution, while the Boolean logic, the three checks and the five mark points stay identical.</td></tr>
+
+<tr class="ok"><td class="q">5(b)(ii)</td><td class="topic">Test plan: normal, boundary, erroneous</td><td>Context follows 5(b)(i); structure identical</td><td><span class="badge">STRONG</span> The given normal value (2) and the three test types are preserved as the assessed content; the surrounding scenario differs.</td></tr>
+
+<tr class="ok"><td class="q">5(c)(i)</td><td class="topic">Writing a function with parameters and return</td><td>Basic &pound;60 / Premium &pound;80 &rarr; Standard &pound;35 / Premium &pound;55</td><td><span class="badge">STRONG</span> Prices and one room type renamed, so a copied function will not compute the right figure. The four mark points (header, parameters, calculation, return) are unchanged.</td></tr>
+
+<tr class="ok"><td class="q">5(c)(ii)</td><td class="topic">Calling a function and outputting the result</td><td>Premium room 5 nights &rarr; premium pitch 5 nights; expected &pound;400 &rarr; &pound;275</td><td><span class="badge">STRONG</span> Different numeric result from the new price, so the answer cannot be lifted. The three mark points (call, correct parameters, output) hold. See verification.</td></tr>
+
+<tr class="ok"><td class="q">5(d)</td><td class="topic">Identifying and fixing two logic errors</td><td>Hotel rooms array &rarr; caravan park pitches array; array data refreshed</td><td><span class="badge">STRONG</span> Identifier and data changed; the two logic errors (loop misses index 0; total reset inside loop) are deliberately the same, keeping both mark points.</td></tr>
+
+<tr class="ok"><td class="q">5(e)</td><td class="topic">Iterative pricing algorithm with a discount and a sentinel</td><td>Car park &pound;4/&pound;2 per hour &rarr; bike hire &pound;6/&pound;3 per hour</td><td><span class="badge">STRONG</span> Context and rates changed but the discount is still a halving, so the structure (input two values, branch on electric, repeat until 0) and all six mark points are identical. See verification.</td></tr>
+</table>
+
+<h2>2. Mark total verification against the original</h2>
+<table class="mt">
+<tr><th>Question</th><th>Original marks</th><th>Variation marks</th><th>Match</th></tr>
+<tr><td>1</td><td>7</td><td>7</td><td>Yes</td></tr>
+<tr><td>2</td><td>19</td><td>19</td><td>Yes</td></tr>
+<tr><td>3</td><td>9</td><td>9</td><td>Yes</td></tr>
+<tr><td>4</td><td>15</td><td>15</td><td>Yes</td></tr>
+<tr><td>5</td><td>30</td><td>30</td><td>Yes</td></tr>
+<tr style="font-weight:bold;"><td>Total</td><td>80</td><td>80</td><td>Yes</td></tr>
+</table>
+<p>Assessment objective tags were carried across unchanged for every sub-question (see the AO labels in the mark scheme).</p>
+
+<h2>3. Computational verification</h2>
+<div class="verify"><strong>2(d)(ii) trace.</strong> Khan (4 chars) + str(2023) gives staffID = Khan2023 (8 chars). While length &lt; 10, append "z": Khan2023z (9), then Khan2023zz (10), loop stops. Final output: ID Khan2023zz. Two iterations, matching the original (Kofi + 2021 needed two "x").</div>
+
+<div class="verify"><strong>3(a) merge sort.</strong> Start [38, -14, 27, -6, 51, 0, -42, 19]. Size 2: (-14 38)(-6 27)(0 51)(-42 19). Size 4: (-14 -6 27 38)(-42 0 19 51). Size 8: (-42 -14 -6 0 19 27 38 51). Confirmed equal to the sorted list; three clean merge stages, same as the original.</div>
+
+<div class="verify"><strong>5(c)(ii) pricing.</strong> newPrice("premium", 5) = 55 &times; 5 = &pound;275. (Original premium room 5 nights = 80 &times; 5 = &pound;400, so the leaked figure no longer applies.)</div>
+
+<div class="verify"><strong>5(e) pricing samples.</strong> Electric: 3 hours = 3 &times; 3 = &pound;9. Non-electric: 2 hours = 2 &times; 6 = &pound;12. Discount is a halving (6 to 3), exactly as the original car park (4 to 2).</div>
+
+<h2>4. Googleability audit</h2>
+<p>The highest-risk searchable artefacts in the original were the merge-sort number list, the trace-table inputs and output string, the cloze passage, the validation code, and the SQL statement. Each of these has been changed at the level that a search would key on: the entire number list (3a), the input and pad character that change the final string (2d), the full sentence wording of the cloze (4b(ii)), a literal value plus the table and field names (5a, 5b), and the price figures (5c). Remaining verbatim surface is limited to generic theory questions (1c, 2a(ii), 2a(iii), 3b, 3c, 4b(i)) where there is no original-specific answer to leak and varying the wording would not change what is assessed. No scenario preamble survives word for word from the original.</p>
+
+</div>
+</body>
+</html>
