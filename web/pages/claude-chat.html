@@ -2,41 +2,80 @@
   <div class="shell workflow-page">
     <div class="workflow-hero">
       <div>
-        <p class="eyebrow">Workflow A</p>
+        <p class="eyebrow">Claude workflow</p>
         <h1>Claude Chat Workflow</h1>
       </div>
     </div>
     <div class="content-grid">
       <section class="page-panel" aria-labelledby="claude-chat-checklist-title">
-        <h2 id="claude-chat-checklist-title">Checklist</h2>
-        <ol class="checklist">
-          <li><input id="check-claude-chat-4" type="checkbox"><label for="check-claude-chat-4">Open Claude and start a new chat. Sign up if needed.</label></li>
-          <li>
-            <input id="check-claude-chat-5" type="checkbox">
-            <span class="checklist-content">
-              <label for="check-claude-chat-5">Download <strong>exam-variation.skill</strong> from this page.</label>
-              <a class="inline-help-button" href="../exam-variation.skill" download>Download</a>
-            </span>
-          </li>
-          <li>
-            <input id="check-claude-chat-6" type="checkbox">
-            <span class="checklist-content">
-              <label for="check-claude-chat-6">Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload, then upload the skill.</label>
-              <button class="inline-help-button" type="button" data-open-modal="instructions-modal">Show screenshot</button>
-            </span>
-          </li>
-          <li><input id="check-claude-chat-1" type="checkbox"><label for="check-claude-chat-1">Choose an exam question from your resource bank.</label></li>
-          <li><input id="check-claude-chat-2" type="checkbox"><label for="check-claude-chat-2">Screenshot the question.</label></li>
-          <li><input id="check-claude-chat-3" type="checkbox"><label for="check-claude-chat-3">Screenshot the mark scheme.</label></li>
-          <li><input id="check-claude-chat-7" type="checkbox"><label for="check-claude-chat-7">Open a new chat, add the question paper and mark scheme screenshots, and ask Claude to variate the questions.</label></li>
-          <li>
-            <input id="check-claude-chat-8" type="checkbox">
-            <span class="checklist-content">
-              <label for="check-claude-chat-8">Download the HTML output from Claude, open it in a browser, and print to PDF.</label>
-              <button class="inline-help-button" type="button" data-open-modal="save-work-modal">Show screenshot</button>
-            </span>
-          </li>
-        </ol>
+        <h2 id="claude-chat-checklist-title">Workflow steps</h2>
+        <div class="step-sections">
+          <details class="step-section" open>
+            <summary>
+              <span class="step-letter">A</span>
+              <span>Download the skill</span>
+            </summary>
+            <ol class="checklist">
+              <li>
+                <input id="check-claude-chat-a1" type="checkbox">
+                <span class="checklist-content">
+                  <label for="check-claude-chat-a1">Download <strong>exam-variation.skill</strong> from this page.</label>
+                  <a class="inline-help-button" href="../exam-variation.skill" download>Download</a>
+                </span>
+              </li>
+              <li><input id="check-claude-chat-a2" type="checkbox"><label for="check-claude-chat-a2">Keep the downloaded file somewhere easy to find, such as Downloads or your CPD folder.</label></li>
+            </ol>
+          </details>
+
+          <details class="step-section">
+            <summary>
+              <span class="step-letter">B</span>
+              <span>Open or sign up to Claude</span>
+            </summary>
+            <ol class="checklist">
+              <li><input id="check-claude-chat-b1" type="checkbox"><label for="check-claude-chat-b1">Open Claude in your browser.</label></li>
+              <li><input id="check-claude-chat-b2" type="checkbox"><label for="check-claude-chat-b2">Sign in, or create an account if you do not already have one.</label></li>
+            </ol>
+          </details>
+
+          <details class="step-section">
+            <summary>
+              <span class="step-letter">C</span>
+              <span>Upload the skill</span>
+            </summary>
+            <ol class="checklist">
+              <li>
+                <input id="check-claude-chat-c1" type="checkbox">
+                <span class="checklist-content">
+                  <label for="check-claude-chat-c1">Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload.</label>
+                  <button class="inline-help-button" type="button" data-open-modal="instructions-modal">Show screenshot</button>
+                </span>
+              </li>
+              <li><input id="check-claude-chat-c2" type="checkbox"><label for="check-claude-chat-c2">Select the downloaded <strong>exam-variation.skill</strong> file.</label></li>
+              <li><input id="check-claude-chat-c3" type="checkbox"><label for="check-claude-chat-c3">Wait for Claude to finish adding the skill before starting the task.</label></li>
+            </ol>
+          </details>
+
+          <details class="step-section">
+            <summary>
+              <span class="step-letter">D</span>
+              <span>Prompt with the skill</span>
+            </summary>
+            <ol class="checklist">
+              <li><input id="check-claude-chat-d1" type="checkbox"><label for="check-claude-chat-d1">Choose an exam question from your resource bank.</label></li>
+              <li><input id="check-claude-chat-d2" type="checkbox"><label for="check-claude-chat-d2">Screenshot the question.</label></li>
+              <li><input id="check-claude-chat-d3" type="checkbox"><label for="check-claude-chat-d3">Screenshot the mark scheme.</label></li>
+              <li><input id="check-claude-chat-d4" type="checkbox"><label for="check-claude-chat-d4">Open a new chat, add the question paper and mark scheme screenshots, and ask Claude to variate the questions.</label></li>
+              <li>
+                <input id="check-claude-chat-d5" type="checkbox">
+                <span class="checklist-content">
+                  <label for="check-claude-chat-d5">Download the HTML output from Claude, open it in a browser, and print to PDF.</label>
+                  <button class="inline-help-button" type="button" data-open-modal="save-work-modal">Show screenshot</button>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
       </section>
 
       <div class="page-stack">
@@ -78,8 +117,7 @@ The goal is to iterate a new question of the same subject matter. We will begin 
     </div>
 
     <nav class="pager" aria-label="Claude Chat Workflow navigation">
-      <a class="button" href="#home">Back to choose</a>
-      <a class="button button-primary" href="#power-user">Next: B</a>
+      <a class="button button-primary" href="../exam-variation.skill" download>Download skill</a>
     </nav>
   </div>
 

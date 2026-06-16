@@ -342,6 +342,67 @@ h1 {
   accent-color: var(--clay);
 }
 
+.step-sections {
+  display: grid;
+  gap: 12px;
+}
+
+.step-section {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.step-section summary {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 780;
+  line-height: 1.25;
+}
+
+.step-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.step-section summary::after {
+  content: "+";
+  justify-self: end;
+  grid-column: 3;
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.step-section[open] summary {
+  border-bottom: 1px solid var(--line);
+  background: #efe6da;
+}
+
+.step-section[open] summary::after {
+  content: "-";
+}
+
+.step-section .checklist {
+  padding: 14px;
+}
+
+.step-letter {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 800;
+}
+
 .checklist-content {
   display: grid;
   gap: 10px;

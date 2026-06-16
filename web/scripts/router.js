@@ -1,28 +1,21 @@
 (function () {
   const routes = {
-    home: {
-      file: "pages/home.html",
-      title: "Exam Paper Variation CPD"
-    },
     "claude-chat": {
       file: "pages/claude-chat.html",
       title: "Claude Chat Workflow | Exam Paper Variation CPD"
-    },
-    "power-user": {
-      file: "pages/power-user.html",
-      title: "Power User Workflow | Exam Paper Variation CPD"
     }
   };
 
   const aliases = {
+    home: "claude-chat",
     free: "claude-chat",
     pro: "claude-chat",
-    repo: "power-user"
+    repo: "claude-chat"
   };
 
   function pageFromHash() {
     const key = window.location.hash.replace("#", "");
-    return routes[key] ? key : aliases[key] || "home";
+    return routes[key] ? key : aliases[key] || "claude-chat";
   }
 
   async function loadPage(key) {
@@ -53,8 +46,8 @@
 
   function route() {
     loadPage(pageFromHash()).catch(() => {
-      if (window.location.hash !== "#home") {
-        window.location.hash = "home";
+      if (window.location.hash !== "#claude-chat") {
+        window.location.hash = "claude-chat";
       }
     });
   }
