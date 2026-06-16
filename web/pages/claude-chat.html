@@ -23,8 +23,14 @@
           <li><input id="check-claude-chat-3" type="checkbox"><label for="check-claude-chat-3">Screenshot the mark scheme.</label></li>
           <li><input id="check-claude-chat-4" type="checkbox"><label for="check-claude-chat-4">Open Claude and start a new chat.</label></li>
           <li><input id="check-claude-chat-5" type="checkbox"><label for="check-claude-chat-5">Download <strong>exam-variation.skill</strong> from this page.</label></li>
-          <li><input id="check-claude-chat-6" type="checkbox"><label for="check-claude-chat-6">Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload, then upload the skill.</label></li>
-          <li><input id="check-claude-chat-7" type="checkbox"><label for="check-claude-chat-7">Upload the paper and choose whether to variate a small sample or the whole paper.</label></li>
+          <li>
+            <input id="check-claude-chat-6" type="checkbox">
+            <span class="checklist-content">
+              <label for="check-claude-chat-6">Go to Claude sidebar &gt; Customise &gt; Skills &gt; Upload, then upload the skill.</label>
+              <button class="inline-help-button" type="button" data-open-modal="instructions-modal">Show screenshot</button>
+            </span>
+          </li>
+          <li><input id="check-claude-chat-7" type="checkbox"><label for="check-claude-chat-7">Open a new chat, add the question paper and mark scheme screenshots, and ask Claude to variate the questions.</label></li>
         </ol>
       </section>
 
@@ -59,5 +65,15 @@ After the variation, provide:
       <a class="button" href="#home">Back to choose</a>
       <a class="button button-primary" href="#power-user">Next: B</a>
     </nav>
+  </div>
+
+  <div class="modal-backdrop" id="instructions-modal" role="dialog" aria-modal="true" aria-labelledby="instructions-modal-title" hidden>
+    <div class="modal-panel">
+      <div class="modal-toolbar">
+        <h2 id="instructions-modal-title">Skill upload screenshot</h2>
+        <button class="modal-close" type="button" data-close-modal aria-label="Close screenshot">Close</button>
+      </div>
+      <img class="modal-image" src="instructions.png" alt="Claude settings screen showing where to upload a skill.">
+    </div>
   </div>
 </section>
