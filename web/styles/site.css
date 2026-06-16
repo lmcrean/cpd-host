@@ -125,14 +125,6 @@ textarea:focus-visible {
   display: none;
 }
 
-.home-grid {
-  min-height: calc(100vh - 168px);
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-  gap: 64px;
-  align-items: center;
-}
-
 .eyebrow {
   margin: 0 0 18px;
   color: var(--clay);
@@ -171,87 +163,9 @@ h1 {
   margin-top: 32px;
 }
 
-.workflow-panel,
 .page-panel {
   border: 1px solid var(--ink);
   background: var(--white);
-}
-
-.panel-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 18px 0;
-  color: var(--muted);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 780;
-}
-
-.workflow-list {
-  display: grid;
-  gap: 0;
-  padding: 18px;
-}
-
-.workflow-card {
-  display: grid;
-  grid-template-columns: 56px 1fr auto;
-  gap: 18px;
-  align-items: center;
-  width: 100%;
-  border: 1px solid var(--line);
-  border-bottom-width: 0;
-  padding: 20px;
-  background: var(--white);
-  color: var(--ink);
-  text-align: left;
-  text-decoration: none;
-}
-
-.workflow-card:first-child {
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.workflow-card:last-child {
-  border-bottom-width: 1px;
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-
-.workflow-card:hover,
-.workflow-card:focus-visible {
-  background: #efe6da;
-  border-color: var(--ink);
-  box-shadow: inset 4px 0 0 var(--clay);
-}
-
-.workflow-letter {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  font-weight: 800;
-}
-
-.workflow-card h2 {
-  margin: 0 0 5px;
-  font-size: 21px;
-  line-height: 1.12;
-}
-
-.workflow-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.35;
-}
-
-.arrow {
-  color: var(--muted);
-  font-size: 24px;
 }
 
 .workflow-page {
@@ -689,7 +603,6 @@ textarea {
 
 @media (max-width: 900px) {
   .topbar-inner,
-  .home-grid,
   .workflow-hero,
   .content-grid,
   .skill-viewer {
@@ -699,18 +612,6 @@ textarea {
   .topbar-inner {
     display: grid;
     padding: 14px 0;
-  }
-
-  .home-grid {
-    min-height: 0;
-  }
-
-  .workflow-card {
-    grid-template-columns: 48px 1fr;
-  }
-
-  .arrow {
-    display: none;
   }
 
   .skill-file-list {
@@ -733,7 +634,6 @@ textarea {
     padding: 38px 0 34px;
   }
 
-  .workflow-card,
   .page-panel,
   .summary-card {
     padding: 18px;

@@ -15,7 +15,13 @@
 
   function pageFromHash() {
     const key = window.location.hash.replace("#", "");
-    return routes[key] ? key : aliases[key] || "claude-chat";
+    const routeKey = routes[key] ? key : aliases[key] || "claude-chat";
+
+    if (window.location.hash !== `#${routeKey}`) {
+      window.history.replaceState(null, "", `#${routeKey}`);
+    }
+
+    return routeKey;
   }
 
   async function loadPage(key) {
