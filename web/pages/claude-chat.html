@@ -29,6 +29,13 @@
           <li><input id="check-claude-chat-2" type="checkbox"><label for="check-claude-chat-2">Screenshot the question.</label></li>
           <li><input id="check-claude-chat-3" type="checkbox"><label for="check-claude-chat-3">Screenshot the mark scheme.</label></li>
           <li><input id="check-claude-chat-7" type="checkbox"><label for="check-claude-chat-7">Open a new chat, add the question paper and mark scheme screenshots, and ask Claude to variate the questions.</label></li>
+          <li>
+            <input id="check-claude-chat-8" type="checkbox">
+            <span class="checklist-content">
+              <label for="check-claude-chat-8">Download the HTML output from Claude, open it in a browser, and print to PDF.</label>
+              <button class="inline-help-button" type="button" data-open-modal="save-work-modal">Show screenshot</button>
+            </span>
+          </li>
         </ol>
       </section>
 
@@ -83,6 +90,16 @@ The goal is to iterate a new question of the same subject matter. We will begin 
         <button class="modal-close" type="button" data-close-modal aria-label="Close screenshot">Close</button>
       </div>
       <img class="modal-image" src="instructions.png" alt="Claude settings screen showing where to upload a skill.">
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="save-work-modal" role="dialog" aria-modal="true" aria-labelledby="save-work-modal-title" hidden>
+    <div class="modal-panel">
+      <div class="modal-toolbar">
+        <h2 id="save-work-modal-title">Save work screenshot</h2>
+        <button class="modal-close" type="button" data-close-modal aria-label="Close save work screenshot">Close</button>
+      </div>
+      <img class="modal-image" src="save_work.png" alt="Claude output menu showing how to download HTML before opening and printing to PDF.">
     </div>
   </div>
 

@@ -1,1 +1,3 @@
 *.png
+!web/instructions.png
+!web/save_work.png

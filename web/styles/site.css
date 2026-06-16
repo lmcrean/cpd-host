@@ -389,6 +389,10 @@ h1 {
   overflow: hidden;
 }
 
+.prompt-help {
+  margin-top: 12px;
+}
+
 .prompt-toolbar {
   display: flex;
   justify-content: space-between;
