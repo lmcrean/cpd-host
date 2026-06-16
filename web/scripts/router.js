@@ -1,19 +1,41 @@
 (function () {
-  const workflowKeys = ["free", "pro", "repo"];
+  const routes = {
+    home: {
+      file: "pages/home.html",
+      title: "Exam Paper Variation CPD"
+    },
+    "claude-chat": {
+      file: "pages/claude-chat.html",
+      title: "Claude Chat Workflow | Exam Paper Variation CPD"
+    },
+    "power-user": {
+      file: "pages/power-user.html",
+      title: "Power User Workflow | Exam Paper Variation CPD"
+    }
+  };
+
+  const aliases = {
+    free: "claude-chat",
+    pro: "claude-chat",
+    repo: "power-user"
+  };
 
   function pageFromHash() {
     const key = window.location.hash.replace("#", "");
-    return workflowKeys.includes(key) ? key : "home";
+    return routes[key] ? key : aliases[key] || "home";
   }
 
-  function showPage(key) {
-    const pages = [...document.querySelectorAll("[data-page]")];
+  async function loadPage(key) {
+    const root = document.querySelector("#page-root");
     const navLinks = [...document.querySelectorAll("[data-nav]")];
-    const workflows = window.CPD_WORKFLOWS;
+    const route = routes[key];
+    const response = await fetch(route.file);
 
-    pages.forEach((page) => {
-      page.hidden = page.dataset.page !== key;
-    });
+    if (!response.ok) {
+      throw new Error(`Could not load ${route.file}`);
+    }
+
+    root.innerHTML = await response.text();
 
     navLinks.forEach((link) => {
       const isCurrent = link.dataset.nav === key;
@@ -25,12 +47,16 @@
       }
     });
 
-    document.title = key === "home" ? "Exam Paper Variation CPD" : `${workflows[key].name} | Exam Paper Variation CPD`;
+    document.title = route.title;
     window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   function route() {
-    showPage(pageFromHash());
+    loadPage(pageFromHash()).catch(() => {
+      if (window.location.hash !== "#home") {
+        window.location.hash = "home";
+      }
+    });
   }
 
   window.CPD_ROUTER = {

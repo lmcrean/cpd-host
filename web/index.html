@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Exam Paper Variation CPD</title>
-  <meta name="description" content="A minimal CPD guide for using Claude, Claude Pro, Codex, or Claude Code to variate exam questions with an exam skill.">
+  <meta name="description" content="A minimal CPD guide for using Claude, Claude Pro, Codex, or Claude Code to variate exam questions with a pre-trained Agent skill.">
   <link rel="stylesheet" href="styles/site.css">
 </head>
 <body>
@@ -16,69 +16,14 @@
       </a>
       <nav class="menu" aria-label="Page navigation">
         <a href="#home" data-nav="home" aria-current="page">Home</a>
-        <a href="#free" data-nav="free">A. Free Claude</a>
-        <a href="#pro" data-nav="pro">B. Claude $20</a>
-        <a href="#repo" data-nav="repo">C. Repository</a>
+        <a href="#claude-chat" data-nav="claude-chat">A. Claude Chat</a>
+        <a href="#power-user" data-nav="power-user">B. Power User</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="page" data-page="home">
-      <div class="shell home-grid">
-        <div>
-          <p class="eyebrow">Choose your workflow</p>
-          <h1>CPD Session -- Variate exam papers with an exam skill.</h1>
-        </div>
+  <main id="page-root" aria-live="polite"></main>
 
-        <div class="workflow-panel" aria-label="Workflow picker">
-          <div class="panel-head">
-            <span>Menu</span>
-            <span>Pick one</span>
-          </div>
-          <div class="workflow-list">
-            <a class="workflow-card" href="#free">
-              <span class="workflow-letter">A</span>
-              <span>
-                <h2>Claude workflow</h2>
-                <p>Compress the paper, install the skill, then variate the first two questions.</p>
-              </span>
-              <span class="arrow" aria-hidden="true">></span>
-            </a>
-            <a class="workflow-card" href="#pro">
-              <span class="workflow-letter">B</span>
-              <span>
-                <h2>Claude $20 subscription workflow</h2>
-                <p>Install the skill and use the larger workflow to variate the full paper.</p>
-              </span>
-              <span class="arrow" aria-hidden="true">></span>
-            </a>
-            <a class="workflow-card" href="#repo">
-              <span class="workflow-letter">C</span>
-              <span>
-                <h2>Power User workflow</h2>
-                <p>Use Codex or Claude Code to vary, validate, and inspect a page-matched output.</p>
-              </span>
-              <span class="arrow" aria-hidden="true">></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" data-page="free" hidden></section>
-    <section class="page" data-page="pro" hidden></section>
-    <section class="page" data-page="repo" hidden></section>
-  </main>
-
-  <footer class="footer">
-    <div class="shell">Static HTML CPD site. Host this folder directly on GitHub Pages or any simple web server.</div>
-  </footer>
-
-  <script src="scripts/workflows/free.js" defer></script>
-  <script src="scripts/workflows/pro.js" defer></script>
-  <script src="scripts/workflows/repo.js" defer></script>
-  <script src="scripts/workflow-renderer.js" defer></script>
   <script src="scripts/router.js" defer></script>
   <script src="scripts/main.js" defer></script>
 </body>
