@@ -25,11 +25,12 @@ body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:#fff}
 .segmented button{border:0;background:#fff;padding:8px 10px;font-size:12px;font-weight:bold;cursor:pointer;color:var(--ink)}
 .segmented button + button{border-left:1px solid var(--line)}
 .segmented button.active{background:var(--accent-2);color:#fff}
-.pages{overflow:auto;background:var(--soft);padding:14px;display:flex;flex-direction:column;gap:14px;align-items:center}
-.page-card{width:min(100%,900px);background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 4px rgba(20,32,43,.08);overflow:hidden}
+.pages{flex:1;min-height:0;overflow:auto;background:var(--soft);padding:14px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.page-card{flex:0 0 auto;width:min(100%,900px);background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 4px rgba(20,32,43,.08);overflow:hidden}
+.page-card.active{border-color:var(--accent-2);box-shadow:0 0 0 3px rgba(182,67,47,.16),0 1px 4px rgba(20,32,43,.08)}
 .page-card header{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);background:#fff}
 .page-card img{display:block;width:100%;height:auto}
-.html-frame{width:100%;height:100%;border:0;background:#fff}
+.html-frame{flex:1;min-height:0;width:100%;border:0;background:#fff}
 .hint{font-size:12px;color:var(--muted)}
 .spill{color:var(--accent-2);font-weight:bold}
 @media (max-width:900px){
@@ -86,6 +87,7 @@ const modeButtons = {
   question: document.getElementById('questionMode'),
   markscheme: document.getElementById('markschemeMode')
 };
+let pendingPageJump = null;
 
 function pagePath(page) {
   return state.mapping.pageImagePattern.replace('{page}', String(page).padStart(2, '0'));
@@ -111,28 +113,73 @@ function renderNav() {
   });
 }
 
-function renderPages(question) {
-  const key = state.mode === 'question' ? 'questionPages' : 'markschemePages';
-  const selectedPages = question[key];
+function allMappedPages() {
+  const pageSet = new Set();
+  state.mapping.questions.forEach(q => {
+    q.questionPages.forEach(page => pageSet.add(page));
+    q.markschemePages.forEach(page => pageSet.add(page));
+  });
+  const lastPage = Math.max(...pageSet);
+  return Array.from({ length: lastPage }, (_, index) => index + 1);
+}
+
+function sourceForPage(page) {
+  const hasQuestion = state.mapping.questions.some(q => q.questionPages.includes(page));
+  const hasMarkscheme = state.mapping.questions.some(q => q.markschemePages.includes(page));
+
+  if (hasQuestion && hasMarkscheme) return 'Question paper / mark scheme';
+  if (hasQuestion) return 'Question paper';
+  if (hasMarkscheme) return 'Mark scheme';
+  return 'Original PDF';
+}
+
+function renderPages() {
   pages.innerHTML = '';
-  selectedPages.forEach(page => {
+  allMappedPages().forEach(page => {
     const card = document.createElement('article');
     card.className = 'page-card';
+    card.id = `page-${page}`;
+    card.dataset.page = String(page);
     const header = document.createElement('header');
     const pageLabel = document.createElement('strong');
     pageLabel.textContent = `Original page ${page}`;
     const sourceLabel = document.createElement('span');
-    sourceLabel.textContent = state.mode === 'question' ? 'Question paper' : 'Mark scheme';
+    sourceLabel.textContent = sourceForPage(page);
     header.append(pageLabel, sourceLabel);
     const img = document.createElement('img');
     img.src = pagePath(page);
     img.alt = `Original PDF page ${page}`;
+    img.width = 1191;
+    img.height = 1684;
     img.loading = 'eager';
     card.append(header, img);
     pages.appendChild(card);
   });
+}
+
+function selectedPagesFor(question) {
+  const key = state.mode === 'question' ? 'questionPages' : 'markschemePages';
+  return question[key];
+}
+
+function updatePageSelection(question) {
+  const selectedPages = selectedPagesFor(question);
+  [...pages.querySelectorAll('.page-card')].forEach(card => {
+    card.classList.toggle('active', selectedPages.includes(Number(card.dataset.page)));
+  });
+
   const spill = selectedPages.length > 1 ? ' spillover pages' : ' page';
   pageSummary.innerHTML = `${selectedPages.length} original ${selectedPages.length > 1 ? `<span class="spill">${spill}</span>` : spill}: ${selectedPages.join(', ')}`;
+}
+
+function jumpToSelectedPage(question) {
+  const selectedPages = selectedPagesFor(question);
+  const target = pages.querySelector(`[data-page="${selectedPages[0]}"]`);
+
+  if (!target) return;
+  const offset = target.getBoundingClientRect().top - pages.getBoundingClientRect().top;
+  pages.scrollTop += offset;
+  pendingPageJump = null;
 }
 
 function renderFrame(question) {
@@ -152,11 +199,15 @@ function render() {
   const question = currentQuestion();
   renderNav();
   renderMode();
-  renderPages(question);
+  updatePageSelection(question);
   renderFrame(question);
   leftTitle.textContent = state.mode === 'question' ? 'Original Question Paper' : 'Original Mark Scheme';
   rightTitle.textContent = state.mode === 'question' ? 'Variation Question Paper' : 'Variation Mark Scheme';
   questionTitle.textContent = `${question.label} - ${question.title}`;
+  pendingPageJump = question.id;
+  requestAnimationFrame(() => {
+    if (pendingPageJump === question.id) jumpToSelectedPage(question);
+  });
 }
 
 modeButtons.question.addEventListener('click', () => {
@@ -176,6 +227,7 @@ fetch('mapping.json')
   .then(mapping => {
     state.mapping = mapping;
     state.currentId = mapping.questions[0].id;
+    renderPages();
     render();
   })
   .catch(error => {
