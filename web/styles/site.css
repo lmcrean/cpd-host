@@ -359,6 +359,7 @@ h1 {
   cursor: pointer;
   font-size: 14px;
   font-weight: 720;
+  text-decoration: none;
 }
 
 .inline-help-button:hover,
