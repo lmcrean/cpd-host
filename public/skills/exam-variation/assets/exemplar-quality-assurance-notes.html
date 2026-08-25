@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quality Assurance Notes Exemplar</title>
+<style>
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;font-size:10.5pt;color:#000;margin:0;background:#fff;}
+.page{max-width:900px;margin:0 auto;padding:16mm 16mm;}
+h1{font-size:13pt;margin:0 0 4px;}
+h2{font-size:11.5pt;margin:20px 0 8px;border-bottom:2px solid #000;padding-bottom:3px;}
+p{margin:5px 0;}
+table.map{border-collapse:collapse;font-size:9.5pt;width:100%;margin:8px 0;}
+table.map td,table.map th{border:1px solid #000;padding:4px 7px;vertical-align:top;}
+table.map th{background:#ddd;text-align:left;}
+table.map td.q{white-space:nowrap;width:54px;font-weight:bold;}
+.ok{background:#e8f5e9;}
+.warn{background:#fff8e1;}
+.info{background:#e3f2fd;}
+.badge{display:inline-block;font-size:8.5pt;font-weight:bold;padding:1px 6px;border:1px solid #000;border-radius:3px;margin-right:4px;}
+.verify{background:#fffde7;border:1px solid #e0b800;padding:6px 9px;font-size:9.5pt;margin:6px 0;}
+code{font-family:'Courier New',monospace;font-size:9.5pt;background:#f5f5f5;padding:1px 3px;}
+@media print{.page{padding:10mm 12mm;}}
+</style>
+</head>
+<body>
+<main class="page">
+<h1>Quality Assurance Notes</h1>
+<table class="map">
+<tr><th>Question</th><th>Original term</th><th>Variation term</th><th>Quality notes - does it sufficiently variate?</th></tr>
+<tr class="ok"><td class="q">1(a)(ii)</td><td>Darcie / Felix; data 2 1 3 4 5 6 7; six passes vs two passes</td><td>Nia / Marcus; data 3 1 2 4 5 6 7; six passes vs two passes</td><td><span class="badge" style="background:#e8f5e9;">STRONG</span> Name swap alone would be near-worthless (the data string is what students google). Data also changed, and verified to still require exactly two passes with a swap flag (pass 1 makes two swaps, pass 2 makes none), so the MS logic is untouched while the searchable fingerprint is gone.</td></tr>
+<tr class="warn"><td class="q">4</td><td>Processor (no context); stages A, B, C; instructions 1-4</td><td>Processor for a smart traffic management system; same stages and instructions</td><td><span class="badge" style="background:#fff8e1;">PARTIAL</span> Only a context wrapper was added. The 3-stage, 4-instruction structure cannot be varied because every AO2 application point (the interval-by-interval table) depends on it. Risk is moderate: the question body remains near-verbatim searchable. Mitigation: the added context sentence breaks exact-phrase search of the opening line. Consider also reordering this question within the paper.</td></tr>
+<tr class="info"><td class="q">6(a-c)</td><td>IDE debugging features; global/local variables; passing by value</td><td>Unchanged</td><td><span class="badge" style="background:#e3f2fd;">UNCHANGED</span> Pure knowledge recall with no scenario surface to change. Varying these would change what is assessed. Answers are googleable in the sense that any textbook covers them, but there is no original-specific answer to leak.</td></tr>
+</table>
+
+<div class="verify"><strong>5(b) Dijkstra A to H.</strong> A-B 8; B-E 3 gives E 11; B-C 6 gives C 14; E-D 4 gives D 15; C-D 2 gives 16, rejected (15 stands); D-F 6 gives F 21; E-F 18 gives 29, rejected; F-G 7 gives G 28; G-H 5 gives H 33. Path A B E D F G H, distance 33 km. Decoy preserved (C route loses by 1, as in original).</div>
+</main>
+</body>
+</html>
